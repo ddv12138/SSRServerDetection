@@ -9,6 +9,8 @@
  */
 package tk.ddvudo.ssrdetection.Utils.netHadler.jPingy;
 
+import java.util.Locale;
+
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
 
 /**
@@ -28,8 +30,11 @@ public class SampleCode {
 		PingArguments arguments = new PingArguments.Builder().url("baidu.com")
 				.timeout(5000).count(2).bytes(32).build();
 
-		PingResult results = Ping.ping(arguments, Backend.WINDOWS);
-
+		PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
+		
+		Locale locale = Locale.getDefault();  
+		System.out.println(locale.getLanguage());  
+		System.out.println(locale.getCountry());
 	
 		System.out.println("TTL: " + results.ttl());
 

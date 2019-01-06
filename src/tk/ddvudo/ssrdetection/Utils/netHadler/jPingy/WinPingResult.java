@@ -35,12 +35,10 @@ public class WinPingResult extends PingResult {
 	private void generatePackageArray(List<String> lines) {
 		String packages = null;
 		if (pack == null) {
-			if(lines.size()>2) {
-				packages = lines.get(lines.size() - 2);
-			}else {
-				pack = null;
+			if (lines.size() - 3 > 0) {
+				packages = lines.get(lines.size() - 3);
 			}
-			pack = packages.split(",");
+			pack = packages.split("，");
 		}
 	}
 
@@ -60,17 +58,27 @@ public class WinPingResult extends PingResult {
 
 	@Override
 	public int matchTime(List<String> lines) {
-		generatePackageArray(lines);
-		return Integer.parseInt(pack[3].replaceAll("\\D+", ""));
-
+//		generatePackageArray(lines);
+//		return Integer.parseInt(pack[3].replaceAll("\\D+", ""));
+		return -1;
 	}
 
 	private void generateRttArray(List<String> lines) {
 		if (rtt == null) {
 			// rtt
 			String rtts = lines.get(lines.size() - 1);
-			String[] rtt_equals = rtts.split("=");
-			rtt = rtt_equals[1].split("/");
+			String[] rtt_equals = rtts.trim().split("=");
+			ArrayList<String> win_rtt = new ArrayList<>();
+			for (String s : rtt_equals) {
+				if (s.indexOf("ms") > -1) {
+					if (s.indexOf("，") > -1) {
+						win_rtt.add(s.split("，")[0].replaceAll("ms", ""));
+					} else {
+						win_rtt.add(s.replaceAll("ms", ""));
+					}
+				}
+			}
+			rtt = win_rtt.toArray(new String[win_rtt.size()]);
 		}
 	}
 
@@ -97,8 +105,9 @@ public class WinPingResult extends PingResult {
 
 	@Override
 	public float matchRttMdev(List<String> lines) {
-		generateRttArray(lines);
-		return Float.parseFloat(rtt[3].replaceAll("\\D+", ""));
+//		generateRttArray(lines);
+//		return Float.parseFloat(rtt[3].replaceAll("\\D+", ""));
+		return -1;
 	}
 
 	@Override
@@ -126,13 +135,12 @@ public class WinPingResult extends PingResult {
 		return Integer.parseInt(result.group(1).replaceAll("TTL=", ""));
 	}
 
-	
-
 	@Override
 	protected int parsePayload(List<String> lines) {
 		// TODO Auto-generated method stub
 
-		return Integer.parseInt(lines.get(1).split("bytes")[0].trim());
+		return Integer
+				.parseInt(lines.get(1).substring(lines.get(1).indexOf("具有") + 2, lines.get(1).indexOf("字节")).trim());
 	}
 
 	@Override
@@ -153,16 +161,14 @@ public class WinPingResult extends PingResult {
 		String[] split = line.split(" ");
 		PingRequestBuilder builder = PingRequest.builder();
 
-		int bytes = Integer.parseInt(split[0]);
-		String from = split[3];
-		String fromIP = split[4].replace("(", "").replace(")", "")
-				.replace(":", "");
-		int reqnr = Integer.parseInt(split[5].split("=")[1]);
-		int ttl = Integer.parseInt(split[6].split("=")[1]);
-		float time = Float.parseFloat(split[7].split("=")[1]);
+		int bytes = Integer.parseInt(split[3].replaceAll("字节=", ""));
+		String from = split[1].trim();
+		String fromIP = split[1].trim();
+		int reqnr = Integer.parseInt(split[3].split("=")[1]);
+		int ttl = Integer.parseInt(split[5].split("=")[1]);
+		float time = Float.parseFloat(split[4].split("=")[1].replaceAll("ms", ""));
 
-		builder = builder.bytes(bytes).from(from).fromIP(fromIP).reqNr(reqnr)
-				.ttl(ttl).time(time);
+		builder = builder.bytes(bytes).from(from).fromIP(fromIP).reqNr(reqnr).ttl(ttl).time(time);
 
 		return builder.build();
 

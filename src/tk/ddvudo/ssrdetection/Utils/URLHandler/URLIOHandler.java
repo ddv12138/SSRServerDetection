@@ -3,6 +3,7 @@ package tk.ddvudo.ssrdetection.Utils.URLHandler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.SocketTimeoutException;
 import java.net.URLConnection;
 
 public class URLIOHandler {
@@ -19,7 +20,7 @@ public class URLIOHandler {
 		try {
 			br = new BufferedReader(new InputStreamReader(System.in));
 			str = null;
-			System.out.println("ÏÂ·½ÊäÈëss/ssr¶©ÔÄµØÖ·:");
+			System.out.println("è¯·è¾“å…¥ss/ssrè®¢é˜…é“¾æ¥:");
 			str = br.readLine();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,6 +44,8 @@ public class URLIOHandler {
 			content.replaceAll("-", "+");
 			content.replaceAll("_", "/");
 			content = content.substring(6, content.length());
+		}catch(SocketTimeoutException e) {
+			System.out.println("æ•°æ®è·å–è¶…æ—¶");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

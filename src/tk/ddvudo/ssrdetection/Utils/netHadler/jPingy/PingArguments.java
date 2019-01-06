@@ -104,7 +104,7 @@ public class PingArguments {
 				b.append(" -t ").append(ttl);
 			}
 			b.append(" ").append(url);
-		}else if(sysType.equals(Backend.WINDOWS)) {
+		}else if(sysType.equals(Backend.WINDOWS_zhCN)) {
 			b.append("ping");
 			b.append(" -n ").append(count);
 			if (timeout_enabled) {

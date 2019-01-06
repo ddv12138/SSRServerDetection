@@ -1,8 +1,10 @@
 package tk.ddvudo.ssrdetection.Utils.dataResolve;
 
-import java.util.Base64;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.codec.binary.Base64;
 
 import com.alibaba.fastjson.JSON;
 import tk.ddvudo.ssrdetection.beans.airportdata;
@@ -11,9 +13,9 @@ public class DataResolve {
 	private DataResolve() {
 	}
 
-	public airportdata decode(String str) {
-		String decoded = new String(Base64.getDecoder().decode(str));
-		return (airportdata) JSON.parseObject(unicodeToString(decoded), airportdata.class);
+	public airportdata decode(String str) throws UnsupportedEncodingException {
+		String decoded = new String(Base64.decodeBase64(str.replaceAll("\r|\n|\t", "")));
+		return (airportdata) JSON.parseObject(decoded, airportdata.class);
 	}
 
 	public static String unicodeToString(String str) {

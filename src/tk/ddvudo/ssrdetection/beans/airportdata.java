@@ -11,9 +11,9 @@ public class airportdata {
 	String traffic_total = "";
 	String traffic_used = "";
 	String url = "";
-	List<server> servers = null;
+	List<Server> servers = null;
 	public airportdata(String airport, String encryption, String expiry, String password, String port,
-			String traffic_total, String traffic_used, String url, List<server> servers) {
+			String traffic_total, String traffic_used, String url, List<Server> servers) {
 		super();
 		this.airport = airport;
 		this.encryption = encryption;
@@ -24,6 +24,7 @@ public class airportdata {
 		this.traffic_used = traffic_used;
 		this.url = url;
 		this.servers = servers;
+		System.out.println("一共抓取到"+this.servers.size()+"个服务器");
 	}
 	public String getAirport() {
 		return airport;
@@ -73,10 +74,10 @@ public class airportdata {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public List<server> getServers() {
+	public List<Server> getServers() {
 		return servers;
 	}
-	public void setServers(List<server> servers) {
+	public void setServers(List<Server> servers) {
 		this.servers = servers;
 	}
 	

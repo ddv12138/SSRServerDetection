@@ -34,8 +34,9 @@ public class UnixPingResult extends PingResult {
 
 	private void generatePackageArray(List<String> lines) {
 		if (pack == null) {
-			String packages = lines.get(lines.size() - 2);
-			pack = packages.split(",");
+			String packages = null;
+			if(lines.size() - 2 > 0)packages = lines.get(lines.size() - 2);
+			if(null != packages)pack = packages.split(",");
 		}
 	}
 

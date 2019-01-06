@@ -33,7 +33,7 @@ public class Ping {
 
 		},
 		
-		WINDOWS {
+		WINDOWS_zhCN {
 			@Override
 			public PingResult getResult(List<String> output) {
 				return new WinPingResult(output);

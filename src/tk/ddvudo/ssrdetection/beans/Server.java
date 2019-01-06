@@ -1,11 +1,11 @@
 package tk.ddvudo.ssrdetection.beans;
 
-public class server {
+public class Server {
 	String id = "";
 	String ratio = "";
 	String remarks = "";
 	String server = "";
-	public server(String id, String ratio, String remarks, String server) {
+	public Server(String id, String ratio, String remarks, String server) {
 		super();
 		this.id = id;
 		this.ratio = ratio;
@@ -35,6 +35,10 @@ public class server {
 	}
 	public void setServer(String server) {
 		this.server = server;
+	}
+	@Override
+	public String toString() {
+		return "server [id=" + id + ", ratio=" + ratio + ", remarks=" + remarks + ", server=" + server + "]";
 	}
 	
 }

@@ -20,6 +20,8 @@ public class URLConnHandler {
 		con.setRequestProperty("accept", "*/*");
 		con.setRequestProperty("connection", "Keep-Alive");
 		con.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+		con.setReadTimeout(5000);
+		System.out.println("连接成功，进入数据处理");
 		con.connect();
 		return con;
 	}
