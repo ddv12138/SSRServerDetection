@@ -16,10 +16,11 @@ public class Main {
 	public static void main(String[] args) {
 		URLIOHandler iohandler = null;
 		try {
-			//https://lisuanlaoji.me/link/U4X5hiULzvWINa0c?mu=3
 			iohandler = URLIOHandler.getInstance();
 			String linkurl = iohandler.getInputUrl();
-			if(null == linkurl || linkurl.equals(""))linkurl = "https://lisuanlaoji.me/link/4RgXEmrCRZUHTCsA?mu=3";
+			if(null == linkurl || linkurl.equals("")) {
+				System.out.println("链接为空，退出");
+			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
 			airportdata data = DataResolve.getInstance().decode(iohandler.getResponseContent(con));
 			for(Server s : data.getServers()) {
