@@ -16,7 +16,6 @@ public class Main {
 		URLIOHandler iohandler = null;
 		try {
 			iohandler = URLIOHandler.getInstance();
-			//https://lisuanlaoji.me/link/yYLmKxoXetqZf0Hi?mu=3
 			String linkurl = iohandler.getInputUrl();
 			if(StringUtils.isEmpty(linkurl)) {
 				System.out.println("链接为空，退出");
