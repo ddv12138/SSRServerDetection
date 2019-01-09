@@ -16,13 +16,15 @@ public class Main {
 		URLIOHandler iohandler = null;
 		try {
 			iohandler = URLIOHandler.getInstance();
+			//https://lisuanlaoji.me/link/yYLmKxoXetqZf0Hi?mu=3
 			String linkurl = iohandler.getInputUrl();
 			if(StringUtils.isEmpty(linkurl)) {
 				System.out.println("链接为空，退出");
 				return;
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
-			airportdata data = DataResolve.getInstance().decode(iohandler.getResponseContent(con));
+			airportdata data = DataResolve.getInstance().ssDecode(iohandler.getResponseContent(con));
+			DataResolve.getInstance().serverPingTestMultiThread(data.getServers());
 			DataResolve.getInstance().serverPingTestSingleThread(data.getServers().toArray(new Server[data.getServers().size()]));
 		} catch (Exception e) {
 			e.printStackTrace();

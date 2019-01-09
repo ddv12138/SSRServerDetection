@@ -1,6 +1,9 @@
 package tk.ddvudo.ssrdetection.Utils.dataResolve;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +22,7 @@ public class DataResolve {
 	private DataResolve() {
 	}
 
-	public airportdata decode(String str) throws UnsupportedEncodingException {
+	public airportdata ssDecode(String str) throws UnsupportedEncodingException {
 		String decoded = new String(Base64.decodeBase64(str.replaceAll("\r|\n|\t", "")));
 		return (airportdata) JSON.parseObject(decoded, airportdata.class);
 	}
@@ -45,6 +48,52 @@ public class DataResolve {
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {
 				System.out.println(s.getRemarks()+"测试结果"+results.rtt_avg()+"ms");
+			}
+		}
+		long t2 = System.currentTimeMillis();
+		System.out.println("测试结束,耗时"+(t2-t1)+"ms");
+	}
+	
+	public void serverPingTestMultiThread(List<Server> servers) {
+		long t1 = System.currentTimeMillis();
+		ExecutorService pool = null;
+		try {
+			int userlength = servers.size();
+			int corenum = Runtime.getRuntime().availableProcessors();
+			int dataPreThread = (int) Math.round(Math.ceil(servers.size() / (double) (corenum)));
+			int groupnum = (int) Math.round(Math.ceil(userlength / (double) dataPreThread));
+			
+			System.out.println("线程数---"+groupnum);
+			
+			pool = Executors.newFixedThreadPool(groupnum);
+			
+			for (int i = 0; i < groupnum; i++) {
+				int startindex = i * dataPreThread;
+				int endindex = (i + 1) * dataPreThread;
+				if (endindex > servers.size()) {
+					endindex = servers.size();
+				}
+				List<Server> tmpList = servers.subList(startindex, endindex);
+				Runnable r = new serverThread(tmpList);
+				pool.submit(r);
+			}
+			pool.shutdown();
+			while (true) {
+				if (pool.isTerminated()) {
+					pool = null;
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (pool != null) {
+				pool.shutdown();
+				pool = null;
+			}
+		} finally {
+			if (pool != null) {
+				pool.shutdown();
+				pool = null;
 			}
 		}
 		long t2 = System.currentTimeMillis();
