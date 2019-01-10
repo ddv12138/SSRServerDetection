@@ -7,14 +7,15 @@ import org.apache.commons.lang.StringUtils;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler;
 import tk.ddvudo.ssrdetection.Utils.dataResolve.DataResolve;
-import tk.ddvudo.ssrdetection.beans.Server;
 import tk.ddvudo.ssrdetection.beans.airportdata;
 
 public class Main {
 
 	public static void main(String[] args) {
 		URLIOHandler iohandler = null;
+		DataResolve dr = null;
 		try {
+			dr = DataResolve.getInstance();
 			iohandler = URLIOHandler.getInstance();
 			String linkurl = iohandler.getInputUrl();
 			if(StringUtils.isEmpty(linkurl)) {
@@ -22,9 +23,8 @@ public class Main {
 				return;
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
-			airportdata data = DataResolve.getInstance().ssDecode(iohandler.getResponseContent(con));
-			DataResolve.getInstance().serverPingTestMultiThread(data.getServers());
-			DataResolve.getInstance().serverPingTestSingleThread(data.getServers().toArray(new Server[data.getServers().size()]));
+			airportdata data = dr.ssDecode(iohandler.getResponseContent(con));
+			dr.serverPingTestMultiThread(data.getServers());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

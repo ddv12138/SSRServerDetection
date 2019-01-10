@@ -2,6 +2,7 @@ package tk.ddvudo.ssrdetection.Utils.dataResolve;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
@@ -43,7 +44,6 @@ public class DataResolve {
 	public void serverPingTestSingleThread(Server... servers) {
 		long t1 = System.currentTimeMillis();
 		for(Server s : servers) {
-			System.out.println("开始测试"+s.getId()+"----->"+s.getRemarks());
 			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {
@@ -74,8 +74,8 @@ public class DataResolve {
 					endindex = servers.size();
 				}
 				List<Server> tmpList = servers.subList(startindex, endindex);
-				Runnable r = new serverThread(tmpList);
-				pool.submit(r);
+				Callable<?> call = new serverThread(tmpList);
+				pool.submit(call);
 			}
 			pool.shutdown();
 			while (true) {

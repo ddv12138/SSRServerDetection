@@ -20,7 +20,7 @@ public class URLIOHandler {
 		try {
 			br = new BufferedReader(new InputStreamReader(System.in));
 			str = null;
-			System.out.println("请输入ss/ssd订阅链接(<ss:\\>或者<ssd:\\开头>):");
+			System.out.println("请输入ss/ssd订阅链接(<ss:\\>或者<ssd:\\>)开头:");
 			str = br.readLine();
 		} catch (Exception e) {
 			e.printStackTrace();
