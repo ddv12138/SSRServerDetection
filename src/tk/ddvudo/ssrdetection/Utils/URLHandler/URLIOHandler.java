@@ -39,9 +39,7 @@ public class URLIOHandler {
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
 			}
-			content = sb.toString();
-			content.replaceAll("-", "+");
-			content.replaceAll("_", "/");
+			content = sb.toString().replaceAll("-", "+").replaceAll("_", "/");
 			content = content.substring(6, content.length());
 		} catch (Exception e) {
 			throw e;
