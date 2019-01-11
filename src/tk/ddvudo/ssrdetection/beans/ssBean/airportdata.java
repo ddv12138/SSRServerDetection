@@ -1,4 +1,4 @@
-package tk.ddvudo.ssrdetection.beans;
+package tk.ddvudo.ssrdetection.beans.ssBean;
 
 import java.util.List;
 

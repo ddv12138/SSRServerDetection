@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler;
 import tk.ddvudo.ssrdetection.Utils.dataResolve.DataResolve;
-import tk.ddvudo.ssrdetection.beans.airportdata;
+import tk.ddvudo.ssrdetection.beans.ssBean.airportdata;
 
 public class Main {
 

@@ -1,10 +1,12 @@
 package tk.ddvudo.ssrdetection.Utils.dataResolve;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,8 +18,9 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
-import tk.ddvudo.ssrdetection.beans.Server;
-import tk.ddvudo.ssrdetection.beans.airportdata;
+import tk.ddvudo.ssrdetection.beans.ssBean.Server;
+import tk.ddvudo.ssrdetection.beans.ssBean.airportdata;
+import tk.ddvudo.ssrdetection.beans.ssBean.ssResult;
 
 public class DataResolve {
 	private DataResolve() {
@@ -67,6 +70,8 @@ public class DataResolve {
 			
 			pool = Executors.newFixedThreadPool(groupnum);
 			
+			ArrayList<Future<ArrayList<ssResult>>> list = new ArrayList<Future<ArrayList<ssResult>>>();
+			
 			for (int i = 0; i < groupnum; i++) {
 				int startindex = i * dataPreThread;
 				int endindex = (i + 1) * dataPreThread;
@@ -74,8 +79,8 @@ public class DataResolve {
 					endindex = servers.size();
 				}
 				List<Server> tmpList = servers.subList(startindex, endindex);
-				Callable<?> call = new serverThread(tmpList);
-				pool.submit(call);
+				Callable<ArrayList<ssResult>> call = new serverThread(tmpList);
+				list.add(pool.submit(call));
 			}
 			pool.shutdown();
 			while (true) {
@@ -84,12 +89,19 @@ public class DataResolve {
 					break;
 				}
 			}
+			ArrayList<ssResult> res = new ArrayList<>();
+			for(Future<ArrayList<ssResult>> f : list) {
+				res.addAll(f.get());
+			}
+			if (res.size() == 0) {
+				System.out.println("没有结果");
+				return;
+			}
+			for(ssResult r : res) {
+				System.out.println(r.toString());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			if (pool != null) {
-				pool.shutdown();
-				pool = null;
-			}
 		} finally {
 			if (pool != null) {
 				pool.shutdown();

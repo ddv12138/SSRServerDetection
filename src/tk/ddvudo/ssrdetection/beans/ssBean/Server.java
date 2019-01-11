@@ -1,4 +1,4 @@
-package tk.ddvudo.ssrdetection.beans;
+package tk.ddvudo.ssrdetection.beans.ssBean;
 
 public class Server {
 	String id = "";
@@ -10,7 +10,7 @@ public class Server {
 		this.id = id;
 		this.ratio = ratio;
 		this.remarks = remarks;
-		this.server = server;
+		this.server = server.trim();
 	}
 	public String getId() {
 		return id;
