@@ -57,7 +57,7 @@ public class DataResolve {
 		System.out.println("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
-	public void serverPingTestMultiThread(List<Server> servers) {
+	public void serverPingTestMultiThread(List<Server> servers) throws Exception {
 		long t1 = System.currentTimeMillis();
 		ExecutorService pool = null;
 		try {
@@ -101,7 +101,7 @@ public class DataResolve {
 				System.out.println(r.toString());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		} finally {
 			if (pool != null) {
 				pool.shutdown();

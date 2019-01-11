@@ -29,56 +29,29 @@ public class airportdata {
 	public String getAirport() {
 		return airport;
 	}
-	public void setAirport(String airport) {
-		this.airport = airport;
-	}
 	public String getEncryption() {
 		return encryption;
-	}
-	public void setEncryption(String encryption) {
-		this.encryption = encryption;
 	}
 	public String getExpiry() {
 		return expiry;
 	}
-	public void setExpiry(String expiry) {
-		this.expiry = expiry;
-	}
 	public String getPassword() {
 		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getPort() {
 		return port;
 	}
-	public void setPort(String port) {
-		this.port = port;
-	}
 	public String getTraffic_total() {
 		return traffic_total;
-	}
-	public void setTraffic_total(String traffic_total) {
-		this.traffic_total = traffic_total;
 	}
 	public String getTraffic_used() {
 		return traffic_used;
 	}
-	public void setTraffic_used(String traffic_used) {
-		this.traffic_used = traffic_used;
-	}
 	public String getUrl() {
 		return url;
 	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
 	public List<Server> getServers() {
 		return servers;
-	}
-	public void setServers(List<Server> servers) {
-		this.servers = servers;
 	}
 	
 }

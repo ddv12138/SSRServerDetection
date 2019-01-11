@@ -23,7 +23,7 @@ public class URLIOHandler {
 			System.out.println("请输入ss/ssd订阅链接(<ss:\\>或者<ssd:\\>)开头:");
 			str = br.readLine();
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		} finally {
 			br.close();
 		}
@@ -44,10 +44,8 @@ public class URLIOHandler {
 			content.replaceAll("-", "+");
 			content.replaceAll("_", "/");
 			content = content.substring(6, content.length());
-		}catch(SocketTimeoutException e) {
-			System.out.println("数据获取超时");
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		} finally {
 			br.close();
 		}

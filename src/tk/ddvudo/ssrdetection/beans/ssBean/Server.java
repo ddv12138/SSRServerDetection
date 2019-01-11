@@ -15,26 +15,14 @@ public class Server {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getRatio() {
 		return ratio;
-	}
-	public void setRatio(String ratio) {
-		this.ratio = ratio;
 	}
 	public String getRemarks() {
 		return remarks;
 	}
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
 	public String getServer() {
 		return server;
-	}
-	public void setServer(String server) {
-		this.server = server;
 	}
 	@Override
 	public String toString() {
