@@ -6,21 +6,46 @@ import java.io.InputStreamReader;
 import java.net.URLConnection;
 
 public class URLIOHandler {
-	private URLIOHandler() {
+	public enum LinkType {
+		SS {
+			@Override
+			public int getSliceEnd() {
+				return 6;
+			}
+		},
+		
+		SSR {
+			@Override
+			public int getSliceEnd() {
+				return 0;
+			}
+		};
+
+		public abstract int getSliceEnd();
 	}
 
+	private LinkType linktype;
+	
+	private URLIOHandler() {
+	}
 	public static final URLIOHandler getInstance() {
 		return new URLIOHandler();
 	}
 
-	public String getInputUrl() throws IOException {
+	public String getInputUrl(LinkType linktype) throws IOException {
 		String str = null;
 		BufferedReader br = null;
+		this.linktype = linktype;
 		try {
 			br = new BufferedReader(new InputStreamReader(System.in));
 			str = null;
-			System.out.println("请输入ss/ssd订阅链接(<ss:\\>或者<ssd:\\>)开头:");
-			str = br.readLine();
+			if(linktype.equals(LinkType.SS)) {
+				System.out.println("请输入ss/ssd订阅链接:");
+				str = br.readLine();
+			}else if(linktype.equals(LinkType.SSR)) {
+				System.out.println("请输入ssr订阅链接:");
+				str = br.readLine();
+			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -40,7 +65,7 @@ public class URLIOHandler {
 				sb.append(line);
 			}
 			content = sb.toString().replaceAll("-", "+").replaceAll("_", "/");
-			content = content.substring(6, content.length());
+			content = content.substring(this.linktype.getSliceEnd(), content.length());
 		} catch (Exception e) {
 			throw e;
 		} finally {

@@ -1,16 +1,16 @@
 package tk.ddvudo.ssrdetection.beans.ssBean;
 
-public class Server {
+import tk.ddvudo.ssrdetection.beans.Server;
+
+public class SSServer extends Server{
 	String id = "";
 	String ratio = "";
-	String remarks = "";
-	String server = "";
-	public Server(String id, String ratio, String remarks, String server) {
+	public SSServer(String id, String ratio, String remarks, String server) {
 		super();
 		this.id = id;
 		this.ratio = ratio;
-		this.remarks = remarks;
-		this.server = server.trim();
+		this.remarks = remarks.trim();
+		this.server = server;
 	}
 	public String getId() {
 		return id;
@@ -18,15 +18,17 @@ public class Server {
 	public String getRatio() {
 		return ratio;
 	}
-	public String getRemarks() {
-		return remarks;
-	}
+	@Override
 	public String getServer() {
 		return server;
 	}
 	@Override
 	public String toString() {
 		return "server [id=" + id + ", ratio=" + ratio + ", remarks=" + remarks + ", server=" + server + "]";
+	}
+	@Override
+	public String getRemarks() {
+		return this.remarks;
 	}
 	
 }

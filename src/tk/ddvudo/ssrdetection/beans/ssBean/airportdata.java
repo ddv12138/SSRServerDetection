@@ -11,9 +11,9 @@ public class airportdata {
 	String traffic_total = "";
 	String traffic_used = "";
 	String url = "";
-	List<Server> servers = null;
+	List<SSServer> servers = null;
 	public airportdata(String airport, String encryption, String expiry, String password, String port,
-			String traffic_total, String traffic_used, String url, List<Server> servers) {
+			String traffic_total, String traffic_used, String url, List<SSServer> servers) {
 		super();
 		this.airport = airport;
 		this.encryption = encryption;
@@ -50,7 +50,7 @@ public class airportdata {
 	public String getUrl() {
 		return url;
 	}
-	public List<Server> getServers() {
+	public List<SSServer> getServers() {
 		return servers;
 	}
 	

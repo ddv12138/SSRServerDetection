@@ -4,8 +4,8 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 
 public class ssResult {
 	PingResult result = null;
-	Server server = null;
-	public ssResult(PingResult result, Server server) {
+	SSServer server = null;
+	public ssResult(PingResult result, SSServer server) {
 		super();
 		this.result = result;
 		this.server = server;
@@ -13,7 +13,7 @@ public class ssResult {
 	public PingResult getResult() {
 		return result;
 	}
-	public Server getServer() {
+	public SSServer getServer() {
 		return server;
 	}
 	@Override

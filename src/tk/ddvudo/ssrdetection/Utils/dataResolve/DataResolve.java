@@ -14,11 +14,12 @@ import org.apache.commons.codec.binary.Base64;
 
 import com.alibaba.fastjson.JSON;
 
+import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
-import tk.ddvudo.ssrdetection.beans.ssBean.Server;
+import tk.ddvudo.ssrdetection.beans.ssBean.SSServer;
 import tk.ddvudo.ssrdetection.beans.ssBean.airportdata;
 import tk.ddvudo.ssrdetection.beans.ssBean.ssResult;
 
@@ -26,8 +27,11 @@ public class DataResolve {
 	private DataResolve() {
 	}
 
-	public airportdata ssDecode(String str) throws UnsupportedEncodingException {
-		String decoded = new String(Base64.decodeBase64(str.replaceAll("\r|\n|\t", "")));
+	public airportdata Decode(String str,LinkType linktype) throws UnsupportedEncodingException {
+		String decoded = null;
+		if(linktype == LinkType.SS) {
+			decoded = new String(Base64.decodeBase64(str.replaceAll("\r|\n|\t", "")));
+		}
 		return (airportdata) JSON.parseObject(decoded, airportdata.class);
 	}
 
@@ -44,9 +48,9 @@ public class DataResolve {
 		return str;
 	}
 	
-	public void serverPingTestSingleThread(Server... servers) {
+	public void serverPingTestSingleThread(SSServer... servers) {
 		long t1 = System.currentTimeMillis();
-		for(Server s : servers) {
+		for(SSServer s : servers) {
 			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {
@@ -57,7 +61,7 @@ public class DataResolve {
 		System.out.println("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
-	public void serverPingTestMultiThread(List<Server> servers) throws Exception {
+	public void serverPingTestMultiThread(List<SSServer> servers) throws Exception {
 		long t1 = System.currentTimeMillis();
 		ExecutorService pool = null;
 		try {
@@ -78,7 +82,7 @@ public class DataResolve {
 				if (endindex > servers.size()) {
 					endindex = servers.size();
 				}
-				List<Server> tmpList = servers.subList(startindex, endindex);
+				List<SSServer> tmpList = servers.subList(startindex, endindex);
 				Callable<ArrayList<ssResult>> call = new serverThread(tmpList);
 				list.add(pool.submit(call));
 			}
