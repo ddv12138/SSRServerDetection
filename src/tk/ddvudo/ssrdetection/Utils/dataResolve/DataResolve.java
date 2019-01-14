@@ -20,19 +20,19 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
 import tk.ddvudo.ssrdetection.beans.ssBean.SSServer;
-import tk.ddvudo.ssrdetection.beans.ssBean.airportdata;
-import tk.ddvudo.ssrdetection.beans.ssBean.ssResult;
+import tk.ddvudo.ssrdetection.beans.ssBean.SSAirport;
+import tk.ddvudo.ssrdetection.beans.ssBean.Result;
 
 public class DataResolve {
 	private DataResolve() {
 	}
 
-	public airportdata Decode(String str,LinkType linktype) throws UnsupportedEncodingException {
+	public SSAirport Decode(String str,LinkType linktype) throws UnsupportedEncodingException {
 		String decoded = null;
 		if(linktype == LinkType.SS) {
 			decoded = new String(Base64.decodeBase64(str.replaceAll("\r|\n|\t", "")));
 		}
-		return (airportdata) JSON.parseObject(decoded, airportdata.class);
+		return (SSAirport) JSON.parseObject(decoded, SSAirport.class);
 	}
 
 	public String unicodeToString(String str) {
@@ -74,7 +74,7 @@ public class DataResolve {
 			
 			pool = Executors.newFixedThreadPool(groupnum);
 			
-			ArrayList<Future<ArrayList<ssResult>>> list = new ArrayList<Future<ArrayList<ssResult>>>();
+			ArrayList<Future<ArrayList<Result>>> list = new ArrayList<Future<ArrayList<Result>>>();
 			
 			for (int i = 0; i < groupnum; i++) {
 				int startindex = i * dataPreThread;
@@ -83,7 +83,7 @@ public class DataResolve {
 					endindex = servers.size();
 				}
 				List<SSServer> tmpList = servers.subList(startindex, endindex);
-				Callable<ArrayList<ssResult>> call = new serverThread(tmpList);
+				Callable<ArrayList<Result>> call = new serverThread(tmpList);
 				list.add(pool.submit(call));
 			}
 			pool.shutdown();
@@ -93,15 +93,15 @@ public class DataResolve {
 					break;
 				}
 			}
-			ArrayList<ssResult> res = new ArrayList<>();
-			for(Future<ArrayList<ssResult>> f : list) {
+			ArrayList<Result> res = new ArrayList<>();
+			for(Future<ArrayList<Result>> f : list) {
 				res.addAll(f.get());
 			}
 			if (res.size() == 0) {
 				System.out.println("没有结果");
 				return;
 			}
-			for(ssResult r : res) {
+			for(Result r : res) {
 				System.out.println(r.toString());
 			}
 		} catch (Exception e) {

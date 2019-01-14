@@ -2,9 +2,9 @@ package tk.ddvudo.ssrdetection.beans.ssBean;
 
 import java.util.List;
 
-public class airportdata {
-	String airport = "";
-	String encryption	 = "";
+public class SSAirport {
+	String group = "";
+	String method = "";
 	String expiry = "";
 	String password = "";
 	String port = "";
@@ -12,11 +12,11 @@ public class airportdata {
 	String traffic_used = "";
 	String url = "";
 	List<SSServer> servers = null;
-	public airportdata(String airport, String encryption, String expiry, String password, String port,
+	public SSAirport(String airport, String encryption, String expiry, String password, String port,
 			String traffic_total, String traffic_used, String url, List<SSServer> servers) {
 		super();
-		this.airport = airport;
-		this.encryption = encryption;
+		this.group = airport;
+		this.method = encryption;
 		this.expiry = expiry;
 		this.password = password;
 		this.port = port;
@@ -26,11 +26,11 @@ public class airportdata {
 		this.servers = servers;
 		System.out.println("一共抓取到"+this.servers.size()+"个服务器");
 	}
-	public String getAirport() {
-		return airport;
+	public String getGroup() {
+		return group;
 	}
-	public String getEncryption() {
-		return encryption;
+	public String getMethod() {
+		return method;
 	}
 	public String getExpiry() {
 		return expiry;

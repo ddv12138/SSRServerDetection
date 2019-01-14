@@ -2,10 +2,10 @@ package tk.ddvudo.ssrdetection.beans.ssBean;
 
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 
-public class ssResult {
+public class Result {
 	PingResult result = null;
 	SSServer server = null;
-	public ssResult(PingResult result, SSServer server) {
+	public Result(PingResult result, SSServer server) {
 		super();
 		this.result = result;
 		this.server = server;

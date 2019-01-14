@@ -9,9 +9,9 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
 import tk.ddvudo.ssrdetection.beans.ssBean.SSServer;
-import tk.ddvudo.ssrdetection.beans.ssBean.ssResult;
+import tk.ddvudo.ssrdetection.beans.ssBean.Result;
 
-public class serverThread implements Callable<ArrayList<ssResult>> {
+public class serverThread implements Callable<ArrayList<Result>> {
 	
 	private List<SSServer> servers = null;
 	
@@ -20,13 +20,13 @@ public class serverThread implements Callable<ArrayList<ssResult>> {
 	}
 
 	@Override
-	public ArrayList<ssResult> call() {
-		ArrayList<ssResult> resarr = new ArrayList<>();
+	public ArrayList<Result> call() {
+		ArrayList<Result> resarr = new ArrayList<>();
 		for(SSServer s : servers) {
 			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {
-				ssResult res = new ssResult(results, s);
+				Result res = new Result(results, s);
 				resarr.add(res);
 			}
 		}

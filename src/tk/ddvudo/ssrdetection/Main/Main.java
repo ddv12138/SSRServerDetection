@@ -8,7 +8,7 @@ import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
 import tk.ddvudo.ssrdetection.Utils.dataResolve.DataResolve;
-import tk.ddvudo.ssrdetection.beans.ssBean.airportdata;
+import tk.ddvudo.ssrdetection.beans.ssBean.SSAirport;
 
 public class Main {
 
@@ -24,7 +24,7 @@ public class Main {
 				return;
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
-			airportdata data = dr.Decode(iohandler.getResponseContent(con),LinkType.SS);
+			SSAirport data = dr.Decode(iohandler.getResponseContent(con),LinkType.SS);
 			dr.serverPingTestMultiThread(data.getServers());
 		} catch (Exception e) {
 			e.printStackTrace();
