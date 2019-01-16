@@ -6,6 +6,41 @@ public class SSRServer extends Server{
 	String obfsparam = null;
 	String protoparam = null;
 	String group = null;
+	private String protocol  = null;
+	private String obfs  = null;
+	
+	@Override
+	public String toString() {
+		return "SSRServer [group=" + group + ", server=" + server + ", remarks=" + remarks + "]";
+	}
+
+	public SSRServer(String server,String port,String method,String passwd,String protocol,String obfs,
+			String obfsparam, String protoparam, String remarks,String group) {
+		this.server = server;
+		this.port = port;
+		this.method = method;
+		this.passwd = passwd;
+		this.protocol = protocol;
+		this.obfs = obfs;
+		this.obfsparam = obfsparam;
+		this.protoparam = protoparam;
+		this.remarks = remarks;
+		this.obfsparam = obfsparam;
+		this.group = group;
+	}
+	
+	public String getProtocol() {
+		return protocol;
+	}
+	public void setProtocol(String protocol) {
+		this.protocol = protocol;
+	}
+	public String getObfs() {
+		return obfs;
+	}
+	public void setObfs(String obfs) {
+		this.obfs = obfs;
+	}
 	@Override
 	public String getServer() {
 		return this.server;

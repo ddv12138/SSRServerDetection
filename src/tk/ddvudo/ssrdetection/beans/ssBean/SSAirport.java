@@ -1,8 +1,12 @@
 package tk.ddvudo.ssrdetection.beans.ssBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SSAirport {
+import tk.ddvudo.ssrdetection.beans.Airport;
+import tk.ddvudo.ssrdetection.beans.Server;
+
+public class SSAirport extends Airport{
 	String group = "";
 	String method = "";
 	String expiry = "";
@@ -29,29 +33,55 @@ public class SSAirport {
 	public String getGroup() {
 		return group;
 	}
+	public void setGroup(String group) {
+		this.group = group;
+	}
 	public String getMethod() {
 		return method;
+	}
+	public void setMethod(String method) {
+		this.method = method;
 	}
 	public String getExpiry() {
 		return expiry;
 	}
+	public void setExpiry(String expiry) {
+		this.expiry = expiry;
+	}
 	public String getPassword() {
 		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getPort() {
 		return port;
 	}
+	public void setPort(String port) {
+		this.port = port;
+	}
 	public String getTraffic_total() {
 		return traffic_total;
+	}
+	public void setTraffic_total(String traffic_total) {
+		this.traffic_total = traffic_total;
 	}
 	public String getTraffic_used() {
 		return traffic_used;
 	}
+	public void setTraffic_used(String traffic_used) {
+		this.traffic_used = traffic_used;
+	}
 	public String getUrl() {
 		return url;
 	}
-	public List<SSServer> getServers() {
-		return servers;
+	public void setUrl(String url) {
+		this.url = url;
 	}
-	
+	public SSServer[] getServers() {
+		return this.servers.toArray(new SSServer[this.servers.size()]);
+	}
+	public void setServers(List<SSServer> servers) {
+		this.servers = servers;
+	}
 }

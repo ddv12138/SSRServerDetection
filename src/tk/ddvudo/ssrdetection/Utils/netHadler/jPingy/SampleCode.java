@@ -25,7 +25,6 @@ public class SampleCode {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		PingArguments arguments = new PingArguments.Builder().url("baidu.com")
 				.timeout(5000).count(2).bytes(32).build();

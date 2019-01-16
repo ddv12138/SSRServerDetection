@@ -8,21 +8,21 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
-import tk.ddvudo.ssrdetection.beans.ssBean.SSServer;
-import tk.ddvudo.ssrdetection.beans.ssBean.Result;
+import tk.ddvudo.ssrdetection.beans.Result;
+import tk.ddvudo.ssrdetection.beans.Server;
 
 public class serverThread implements Callable<ArrayList<Result>> {
 	
-	private List<SSServer> servers = null;
+	private List<Server> servers = null;
 	
-	public serverThread(List<SSServer> servers) {
-		this.servers = servers;
+	public serverThread(List<Server> tmpList) {
+		this.servers = tmpList;
 	}
 
 	@Override
 	public ArrayList<Result> call() {
 		ArrayList<Result> resarr = new ArrayList<>();
-		for(SSServer s : servers) {
+		for(Server s : servers) {
 			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {

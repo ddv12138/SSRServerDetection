@@ -126,8 +126,6 @@ public class UnixPingResult extends PingResult {
 
 	@Override
 	protected int parsePayload(List<String> lines) {
-		// TODO Auto-generated method stub
-
 		return Integer.parseInt(lines.get(1).split("bytes")[0].trim());
 	}
 

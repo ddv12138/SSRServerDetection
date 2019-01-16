@@ -137,10 +137,7 @@ public class WinPingResult extends PingResult {
 
 	@Override
 	protected int parsePayload(List<String> lines) {
-		// TODO Auto-generated method stub
-
-		return Integer
-				.parseInt(lines.get(1).substring(lines.get(1).indexOf("具有") + 2, lines.get(1).indexOf("字节")).trim());
+		return Integer.parseInt(lines.get(1).substring(lines.get(1).indexOf("具有") + 2, lines.get(1).indexOf("字节")).trim());
 	}
 
 	@Override

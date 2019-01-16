@@ -30,8 +30,6 @@ public class PingArguments {
 
 	}
 
-	// TODO make that it can be build
-
 	public static class Builder {
 
 		private PingArguments arguments;
@@ -85,7 +83,6 @@ public class PingArguments {
 		}
 	}
 
-	// TODO make adaptable if certain properaties aren't set
 	public String getCommand(Backend sysType) {
 		StringBuilder b = new StringBuilder();
 		if(sysType.equals(Backend.UNIX)) {
