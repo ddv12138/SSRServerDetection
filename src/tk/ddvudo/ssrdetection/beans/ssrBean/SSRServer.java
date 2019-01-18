@@ -24,7 +24,7 @@ public class SSRServer extends Server{
 		this.obfs = obfs;
 		this.obfsparam = obfsparam;
 		this.protoparam = protoparam;
-		this.remarks = remarks;
+		this.remarks = remarks.trim();
 		this.obfsparam = obfsparam;
 		this.group = group;
 	}

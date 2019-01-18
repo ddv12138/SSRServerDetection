@@ -63,20 +63,20 @@ public class DataResolve {
 			String passwd = linkBase64Decode(basicinfo[5]);
 			if(paramsinfo.length != 4)continue;
 			String obfsparam = null;
-			if(paramsinfo[0].split("=").length > 1)linkBase64Decode(paramsinfo[0].split("=")[1]);
+			if(paramsinfo[0].split("=").length > 1)obfsparam = linkBase64Decode(paramsinfo[0].split("=")[1]);
 			String protoparam = null;
-			if(paramsinfo[1].split("=").length > 1)linkBase64Decode(paramsinfo[1].split("=")[1]);
+			if(paramsinfo[1].split("=").length > 1)protoparam = linkBase64Decode(paramsinfo[1].split("=")[1]);
 			String remarks = null;
-			if(paramsinfo[2].split("=").length > 1)linkBase64Decode(paramsinfo[2].split("=")[1]);
+			if(paramsinfo[2].split("=").length > 1)remarks = linkBase64Decode(paramsinfo[2].split("=")[1]);
 			String group = "";
-			if(paramsinfo[3].split("=").length > 1)linkBase64Decode(paramsinfo[3].split("=")[1]);
+			if(paramsinfo[3].split("=").length > 1)group = linkBase64Decode(paramsinfo[3].split("=")[1]);
 			SSRServer server = new SSRServer(serveraddr, port, method, passwd, protocol, obfs, obfsparam, protoparam, remarks, group);
 			System.out.println(server.toString());
 			airport.setGroup(group);
 			servers.add(server);
 		}
 		airport.setServers(servers);
-		return null;
+		return airport;
 	}
 
 	public String linkBase64Decode(String str) {

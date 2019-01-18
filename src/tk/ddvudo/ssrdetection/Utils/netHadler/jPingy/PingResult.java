@@ -92,7 +92,7 @@ public abstract class PingResult {
 			payload = parsePayload(pingOutput);
 		} catch (Exception e) {
 //			e.printStackTrace();
-			System.out.println(address+"---》连接失败");
+			System.out.println(pingOutput.toString()+"---》连接失败");
 		}
 
 	}
