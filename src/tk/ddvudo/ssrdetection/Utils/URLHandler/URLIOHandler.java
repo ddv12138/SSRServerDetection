@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLConnection;
 
+import tk.ddvudo.ssrdetection.Utils.Global;
+
 public class URLIOHandler {
 	public enum LinkType {
 		SS {
@@ -40,10 +42,10 @@ public class URLIOHandler {
 			br = new BufferedReader(new InputStreamReader(System.in));
 			str = null;
 			if(linktype.equals(LinkType.SS)) {
-				System.out.println("请输入ss/ssd订阅链接:");
+				Global.getInstance().getLogger().info("请输入ss/ssd订阅链接:");
 				str = br.readLine();
 			}else if(linktype.equals(LinkType.SSR)) {
-				System.out.println("请输入ssr订阅链接:");
+				Global.getInstance().getLogger().info("请输入ssr订阅链接:");
 				str = br.readLine();
 			}
 		} catch (Exception e) {

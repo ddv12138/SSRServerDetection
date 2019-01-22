@@ -11,6 +11,7 @@ package tk.ddvudo.ssrdetection.Utils.netHadler.jPingy;
 
 import java.util.Locale;
 
+import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
 
 /**
@@ -32,16 +33,16 @@ public class SampleCode {
 		PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 		
 		Locale locale = Locale.getDefault();  
-		System.out.println(locale.getLanguage());  
-		System.out.println(locale.getCountry());
+		Global.getInstance().getLogger().info(locale.getLanguage());  
+		Global.getInstance().getLogger().info(locale.getCountry());
 	
-		System.out.println("TTL: " + results.ttl());
+		Global.getInstance().getLogger().info("TTL: " + results.ttl());
 
-		System.out.println("RTT Minimum: " + results.rtt_min());
+		Global.getInstance().getLogger().info("RTT Minimum: " + results.rtt_min());
 
-		System.out.println("Received : " + results.received());
+		Global.getInstance().getLogger().info("Received : " + results.received());
 		
-		System.out.println(results.getRequests());
+		Global.getInstance().getLogger().info(results.getRequests());
 	}
 
 }
