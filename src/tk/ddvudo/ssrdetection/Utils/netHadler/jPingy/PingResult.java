@@ -11,6 +11,8 @@ package tk.ddvudo.ssrdetection.Utils.netHadler.jPingy;
 
 import java.util.List;
 
+import tk.ddvudo.ssrdetection.Utils.Global;
+
 /**
  * 
  * @author Thomas Goossens
@@ -92,7 +94,7 @@ public abstract class PingResult {
 			payload = parsePayload(pingOutput);
 		} catch (Exception e) {
 //			e.printStackTrace();
-			System.out.println(pingOutput.toString()+"---》连接失败");
+			Global.getInstance().getLogger().error(pingOutput.toString()+"---》连接失败");
 		}
 
 	}

@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 
+import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
@@ -71,7 +72,7 @@ public class DataResolve {
 			String group = "";
 			if(paramsinfo[3].split("=").length > 1)group = linkBase64Decode(paramsinfo[3].split("=")[1]);
 			SSRServer server = new SSRServer(serveraddr, port, method, passwd, protocol, obfs, obfsparam, protoparam, remarks, group);
-			System.out.println(server.toString());
+			Global.getInstance().getLogger().info(server.toString());
 			airport.setGroup(group);
 			servers.add(server);
 		}
@@ -102,11 +103,11 @@ public class DataResolve {
 			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {
-				System.out.println(s.getRemarks()+"测试结果"+results.rtt_avg()+"ms");
+				Global.getInstance().getLogger().info(s.getRemarks()+"测试结果"+results.rtt_avg()+"ms");
 			}
 		}
 		long t2 = System.currentTimeMillis();
-		System.out.println("测试结束,耗时"+(t2-t1)+"ms");
+		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
 	public void serverPingTestMultiThread(Server... servers) throws Exception {
@@ -120,7 +121,7 @@ public class DataResolve {
 			int dataPreThread = (int) Math.round(Math.ceil(serverList.size() / (double) (corenum)));
 			int groupnum = (int) Math.round(Math.ceil(userlength / (double) dataPreThread));
 			
-			System.out.println("线程数---"+groupnum);
+			Global.getInstance().getLogger().info("线程数---"+groupnum);
 			
 			pool = Executors.newFixedThreadPool(groupnum);
 			
@@ -148,11 +149,11 @@ public class DataResolve {
 				res.addAll(f.get());
 			}
 			if (res.size() == 0) {
-				System.out.println("没有结果");
+				Global.getInstance().getLogger().error("没有结果");
 				return;
 			}
 			for(Result r : res) {
-				System.out.println(r.toString());
+				Global.getInstance().getLogger().info(r.toString());
 			}
 		} catch (Exception e) {
 			throw e;
@@ -163,7 +164,7 @@ public class DataResolve {
 			}
 		}
 		long t2 = System.currentTimeMillis();
-		System.out.println("测试结束,耗时"+(t2-t1)+"ms");
+		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
 	public static final DataResolve getInstance() {

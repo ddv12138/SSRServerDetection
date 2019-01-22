@@ -1,10 +1,9 @@
 package tk.ddvudo.ssrdetection.beans.ssBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.beans.Airport;
-import tk.ddvudo.ssrdetection.beans.Server;
 
 public class SSAirport extends Airport{
 	String group = "";
@@ -28,7 +27,7 @@ public class SSAirport extends Airport{
 		this.traffic_used = traffic_used;
 		this.url = url;
 		this.servers = servers;
-		System.out.println("一共抓取到"+this.servers.size()+"个服务器");
+		Global.getInstance().getLogger().info("一共抓取到"+this.servers.size()+"个服务器");
 	}
 	public String getGroup() {
 		return group;

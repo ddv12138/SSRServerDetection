@@ -1,10 +1,8 @@
 package tk.ddvudo.ssrdetection.beans.ssrBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tk.ddvudo.ssrdetection.beans.Airport;
-import tk.ddvudo.ssrdetection.beans.Server;
 
 public class SSRAirport extends Airport {
 

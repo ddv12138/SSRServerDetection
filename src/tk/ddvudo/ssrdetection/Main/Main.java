@@ -4,6 +4,7 @@ import java.net.URLConnection;
 
 import org.apache.commons.lang.StringUtils;
 
+import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
@@ -20,7 +21,7 @@ public class Main {
 			iohandler = URLIOHandler.getInstance();
 			String linkurl = iohandler.getInputUrl(LinkType.SSR);
 			if(StringUtils.isEmpty(linkurl)) {
-				System.out.println("链接为空，退出");
+				Global.getInstance().getLogger().debug("链接为空，退出");
 				return;
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
