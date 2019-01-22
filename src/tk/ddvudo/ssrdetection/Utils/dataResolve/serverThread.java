@@ -23,7 +23,7 @@ public class serverThread implements Callable<ArrayList<Result>> {
 	public ArrayList<Result> call() {
 		ArrayList<Result> resarr = new ArrayList<>();
 		for(Server s : servers) {
-			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
+			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(50).count(1).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
 			if(results.rtt_avg()>0) {
 				Result res = new Result(results, s);

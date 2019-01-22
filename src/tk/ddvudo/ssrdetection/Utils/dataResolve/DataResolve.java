@@ -110,7 +110,8 @@ public class DataResolve {
 		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
-	public void serverPingTestMultiThread(Server... servers) throws Exception {
+	public ArrayList<Result> serverPingTestMultiThread(Server... servers) throws Exception {
+		ArrayList<Result> res = null;
 		long t1 = System.currentTimeMillis();
 		ExecutorService pool = null;
 		try {
@@ -144,13 +145,13 @@ public class DataResolve {
 					break;
 				}
 			}
-			ArrayList<Result> res = new ArrayList<>();
+			res = new ArrayList<>();
 			for(Future<ArrayList<Result>> f : list) {
 				res.addAll(f.get());
 			}
 			if (res.size() == 0) {
 				Global.getInstance().getLogger().error("没有结果");
-				return;
+				return null;
 			}
 			for(Result r : res) {
 				Global.getInstance().getLogger().info(r.toString());
@@ -165,6 +166,7 @@ public class DataResolve {
 		}
 		long t2 = System.currentTimeMillis();
 		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
+		return res;
 	}
 	
 	public static final DataResolve getInstance() {
