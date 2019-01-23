@@ -1,14 +1,8 @@
-package tk.ddvudo.ssrdetection.Main;
+package tk.ddvudo.ssrdetection.main;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.URLConnection;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.core.config.ConfigurationSource;
-import org.apache.logging.log4j.core.config.Configurator;
-
 import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler;
