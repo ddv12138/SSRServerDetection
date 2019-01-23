@@ -42,7 +42,7 @@
   <!-- the level of the root level is set to DEBUG by default.       -->
   <root level="INFO">          
    	<!-- <appender-ref ref="STDOUT" />  -->
-    <!-- <appender-ref ref="FILE" /> -->
+    <appender-ref ref="FILE" />
   </root>  
   
 </configuration>
