@@ -1,0 +1,264 @@
+{
+  "submitTime": "2019.01.24.14.31.22.073+0800",
+  "executeStartTime": "2019.01.24.14.31.22.079+0800",
+  "executionEndTime": "2019.01.24.14.31.23.067+0800",
+  "durationSec": 0.988,
+  "requestNum": 6,
+  "requestNumActual": 6,
+  "responsedNum": 6,
+  "taskErrorMetas": [],
+  "responseContext": {},
+  "state": "COMPLETED_WITHOUT_ERROR",
+  "taskId": "PT_6_20190124143122072_70f2b9d4-1f1",
+  "parallelTaskResult": {
+    "www.bilibili.com": {
+      "requestParameters": {
+        "PARALLEC_EMPTY_REQUEST_BODY": "",
+        "NEED_POLLER": "false",
+        "STATUS": "COMPLETED",
+        "TRUE_CONTENT": "",
+        "TRUE_URL": "",
+        "TRUE_PORT": "0",
+        "HEADER_META": "",
+        "PREPARE_TIME": "2019.01.24.14.31.22.082+0800"
+      },
+      "hostName": "www.bilibili.com",
+      "singleTaskResponse": {
+        "request": {
+          "actorMaxOperationTimeoutSec": 15,
+          "resourcePath": "",
+          "requestContent": "",
+          "httpMethod": "NA",
+          "pollable": false,
+          "httpHeaderMap": {},
+          "protocol": "PING",
+          "host": "www.bilibili.com",
+          "port": 0,
+          "pingMeta": {
+            "mode": "INET_ADDRESS_REACHABLE_NEED_ROOT",
+            "pingTimeoutMillis": 50,
+            "numRetries": 1
+          }
+        },
+        "responseContent": "NOT_SAVED",
+        "receiveTime": "2019.01.24.14.31.22.609+0800",
+        "receiveTimeInManager": "2019.01.24.14.31.22.611+0800",
+        "error": false,
+        "statusCode": "UNREACHABLE",
+        "statusCodeInt": -1,
+        "operationTimeMillis": 521,
+        "pollingHistoryMap": {}
+      }
+    },
+    "lisuanlaoji.co": {
+      "requestParameters": {
+        "PARALLEC_EMPTY_REQUEST_BODY": "",
+        "NEED_POLLER": "false",
+        "STATUS": "COMPLETED",
+        "TRUE_CONTENT": "",
+        "TRUE_URL": "",
+        "TRUE_PORT": "0",
+        "HEADER_META": "",
+        "PREPARE_TIME": "2019.01.24.14.31.22.085+0800"
+      },
+      "hostName": "lisuanlaoji.co",
+      "singleTaskResponse": {
+        "request": {
+          "actorMaxOperationTimeoutSec": 15,
+          "resourcePath": "",
+          "requestContent": "",
+          "httpMethod": "NA",
+          "pollable": false,
+          "httpHeaderMap": {},
+          "protocol": "PING",
+          "host": "lisuanlaoji.co",
+          "port": 0,
+          "pingMeta": {
+            "mode": "INET_ADDRESS_REACHABLE_NEED_ROOT",
+            "pingTimeoutMillis": 50,
+            "numRetries": 1
+          }
+        },
+        "responseContent": "NOT_SAVED",
+        "receiveTime": "2019.01.24.14.31.22.609+0800",
+        "receiveTimeInManager": "2019.01.24.14.31.22.616+0800",
+        "error": false,
+        "statusCode": "UNREACHABLE",
+        "statusCodeInt": -1,
+        "operationTimeMillis": 524,
+        "pollingHistoryMap": {}
+      }
+    },
+    "www.youku.com": {
+      "requestParameters": {
+        "PARALLEC_EMPTY_REQUEST_BODY": "",
+        "NEED_POLLER": "false",
+        "STATUS": "COMPLETED",
+        "TRUE_CONTENT": "",
+        "TRUE_URL": "",
+        "TRUE_PORT": "0",
+        "HEADER_META": "",
+        "PREPARE_TIME": "2019.01.24.14.31.22.085+0800"
+      },
+      "hostName": "www.youku.com",
+      "singleTaskResponse": {
+        "request": {
+          "actorMaxOperationTimeoutSec": 15,
+          "resourcePath": "",
+          "requestContent": "",
+          "httpMethod": "NA",
+          "pollable": false,
+          "httpHeaderMap": {},
+          "protocol": "PING",
+          "host": "www.youku.com",
+          "port": 0,
+          "pingMeta": {
+            "mode": "INET_ADDRESS_REACHABLE_NEED_ROOT",
+            "pingTimeoutMillis": 50,
+            "numRetries": 1
+          }
+        },
+        "responseContent": "NOT_SAVED",
+        "receiveTime": "2019.01.24.14.31.22.609+0800",
+        "receiveTimeInManager": "2019.01.24.14.31.22.611+0800",
+        "error": false,
+        "statusCode": "UNREACHABLE",
+        "statusCodeInt": -1,
+        "operationTimeMillis": 517,
+        "pollingHistoryMap": {}
+      }
+    },
+    "www.baidu.com": {
+      "requestParameters": {
+        "PARALLEC_EMPTY_REQUEST_BODY": "",
+        "NEED_POLLER": "false",
+        "STATUS": "COMPLETED",
+        "TRUE_CONTENT": "",
+        "TRUE_URL": "",
+        "TRUE_PORT": "0",
+        "HEADER_META": "",
+        "PREPARE_TIME": "2019.01.24.14.31.22.086+0800"
+      },
+      "hostName": "www.baidu.com",
+      "singleTaskResponse": {
+        "request": {
+          "actorMaxOperationTimeoutSec": 15,
+          "resourcePath": "",
+          "requestContent": "",
+          "httpMethod": "NA",
+          "pollable": false,
+          "httpHeaderMap": {},
+          "protocol": "PING",
+          "host": "www.baidu.com",
+          "port": 0,
+          "pingMeta": {
+            "mode": "INET_ADDRESS_REACHABLE_NEED_ROOT",
+            "pingTimeoutMillis": 50,
+            "numRetries": 1
+          }
+        },
+        "responseContent": "NOT_SAVED",
+        "receiveTime": "2019.01.24.14.31.22.639+0800",
+        "receiveTimeInManager": "2019.01.24.14.31.22.643+0800",
+        "error": false,
+        "statusCode": "UNREACHABLE",
+        "statusCodeInt": -1,
+        "operationTimeMillis": 545,
+        "pollingHistoryMap": {}
+      }
+    },
+    "www.cctv.com": {
+      "requestParameters": {
+        "PARALLEC_EMPTY_REQUEST_BODY": "",
+        "NEED_POLLER": "false",
+        "STATUS": "COMPLETED",
+        "TRUE_CONTENT": "",
+        "TRUE_URL": "",
+        "TRUE_PORT": "0",
+        "HEADER_META": "",
+        "PREPARE_TIME": "2019.01.24.14.31.22.086+0800"
+      },
+      "hostName": "www.cctv.com",
+      "singleTaskResponse": {
+        "request": {
+          "actorMaxOperationTimeoutSec": 15,
+          "resourcePath": "",
+          "requestContent": "",
+          "httpMethod": "NA",
+          "pollable": false,
+          "httpHeaderMap": {},
+          "protocol": "PING",
+          "host": "www.cctv.com",
+          "port": 0,
+          "pingMeta": {
+            "mode": "INET_ADDRESS_REACHABLE_NEED_ROOT",
+            "pingTimeoutMillis": 50,
+            "numRetries": 1
+          }
+        },
+        "responseContent": "NOT_SAVED",
+        "receiveTime": "2019.01.24.14.31.22.609+0800",
+        "receiveTimeInManager": "2019.01.24.14.31.22.612+0800",
+        "error": false,
+        "statusCode": "UNREACHABLE",
+        "statusCodeInt": -1,
+        "operationTimeMillis": 516,
+        "pollingHistoryMap": {}
+      }
+    },
+    "127.0.0.1": {
+      "requestParameters": {
+        "PARALLEC_EMPTY_REQUEST_BODY": "",
+        "NEED_POLLER": "false",
+        "STATUS": "COMPLETED",
+        "TRUE_CONTENT": "",
+        "TRUE_URL": "",
+        "TRUE_PORT": "0",
+        "HEADER_META": "",
+        "PREPARE_TIME": "2019.01.24.14.31.22.087+0800"
+      },
+      "hostName": "127.0.0.1",
+      "singleTaskResponse": {
+        "request": {
+          "actorMaxOperationTimeoutSec": 15,
+          "resourcePath": "",
+          "requestContent": "",
+          "httpMethod": "NA",
+          "pollable": false,
+          "httpHeaderMap": {},
+          "protocol": "PING",
+          "host": "127.0.0.1",
+          "port": 0,
+          "pingMeta": {
+            "mode": "INET_ADDRESS_REACHABLE_NEED_ROOT",
+            "pingTimeoutMillis": 50,
+            "numRetries": 1
+          }
+        },
+        "responseContent": "NOT_SAVED",
+        "receiveTime": "2019.01.24.14.31.22.640+0800",
+        "receiveTimeInManager": "2019.01.24.14.31.22.643+0800",
+        "error": false,
+        "statusCode": "LIVE",
+        "statusCodeInt": -1,
+        "operationTimeMillis": 543,
+        "pollingHistoryMap": {}
+      }
+    }
+  },
+  "targetHostMeta": {
+    "targetHostId": "THM_6_20190124143122072_5e9ba5de-eb9",
+    "hosts": [
+      "127.0.0.1",
+      "www.baidu.com",
+      "www.bilibili.com",
+      "www.cctv.com",
+      "www.youku.com",
+      "lisuanlaoji.co"
+    ]
+  },
+  "replacementVarMapNodeSpecific": {},
+  "replacementVarMap": {},
+  "requestReplacementType": "NO_REPLACEMENT",
+  "isPollable": false
+}

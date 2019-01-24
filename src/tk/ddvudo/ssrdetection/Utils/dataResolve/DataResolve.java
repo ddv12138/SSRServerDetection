@@ -52,9 +52,20 @@ public class DataResolve {
 			if(StringUtils.isEmpty(link))continue;
 			String decode1 = linkBase64Decode(link.trim());
 			String basic = decode1.split("\\/\\?")[0];
-			String params = decode1.split("\\/\\?")[1];
+			String obfsparam = null;
+			String protoparam = null;
+			String remarks = null;
+			String group = "";
+			if(decode1.split("\\/\\?").length>1) {
+				String params = decode1.split("\\/\\?")[1];
+				String[] paramsinfo = params.split("&");
+				if(paramsinfo.length != 4)continue;
+				if(paramsinfo[0].split("=").length > 1)obfsparam = linkBase64Decode(paramsinfo[0].split("=")[1]);
+				if(paramsinfo[1].split("=").length > 1)protoparam = linkBase64Decode(paramsinfo[1].split("=")[1]);
+				if(paramsinfo[2].split("=").length > 1)remarks = linkBase64Decode(paramsinfo[2].split("=")[1]);
+				if(paramsinfo[3].split("=").length > 1)group = linkBase64Decode(paramsinfo[3].split("=")[1]);
+			}
 			String[] basicinfo = basic.split(":");
-			String[] paramsinfo = params.split("&");
 			if(basicinfo.length != 6)continue;
 			String serveraddr = basicinfo[0];
 			String port = basicinfo[1];
@@ -62,15 +73,6 @@ public class DataResolve {
 			String method = basicinfo[3];
 			String obfs = basicinfo[4];
 			String passwd = linkBase64Decode(basicinfo[5]);
-			if(paramsinfo.length != 4)continue;
-			String obfsparam = null;
-			if(paramsinfo[0].split("=").length > 1)obfsparam = linkBase64Decode(paramsinfo[0].split("=")[1]);
-			String protoparam = null;
-			if(paramsinfo[1].split("=").length > 1)protoparam = linkBase64Decode(paramsinfo[1].split("=")[1]);
-			String remarks = null;
-			if(paramsinfo[2].split("=").length > 1)remarks = linkBase64Decode(paramsinfo[2].split("=")[1]);
-			String group = "";
-			if(paramsinfo[3].split("=").length > 1)group = linkBase64Decode(paramsinfo[3].split("=")[1]);
 			SSRServer server = new SSRServer(serveraddr, port, method, passwd, protocol, obfs, obfsparam, protoparam, remarks, group);
 			Global.getInstance().getLogger().info(server.toString());
 			airport.setGroup(group);
@@ -167,6 +169,13 @@ public class DataResolve {
 		long t2 = System.currentTimeMillis();
 		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
 		return res;
+	}
+	
+	public void serverPingTestWithParallec(Server... servers) throws Exception {
+		ArrayList<String> serverhosts = new ArrayList<>();
+		for(Server s:servers) {
+			serverhosts.add(s.getServer());
+		}
 	}
 	
 	public static final DataResolve getInstance() {
