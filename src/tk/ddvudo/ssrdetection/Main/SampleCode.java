@@ -1,4 +1,4 @@
-package tk.ddvudo.ssrdetection.main;
+package tk.ddvudo.ssrdetection.Main;
 
 import java.net.URLConnection;
 
@@ -10,7 +10,7 @@ import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
 import tk.ddvudo.ssrdetection.Utils.dataResolve.DataResolve;
 import tk.ddvudo.ssrdetection.beans.Airport;
 
-public class Main {
+public class SampleCode {
 
 	public static void main(String[] args) {
 		URLIOHandler iohandler = null;
