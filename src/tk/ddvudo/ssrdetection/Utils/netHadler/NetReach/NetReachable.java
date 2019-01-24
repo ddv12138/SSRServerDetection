@@ -5,17 +5,17 @@ import java.util.Map;
 import io.parallec.core.ParallecResponseHandler;
 import io.parallec.core.ParallelClient;
 import io.parallec.core.ResponseOnSingleTask;
+import io.parallec.core.bean.ping.PingMode;
 import tk.ddvudo.ssrdetection.Utils.Global;
 
 public class NetReachable {
 	public static void main(String... args) {
 		 try {
 			ParallelClient pc = new ParallelClient();
-			pc.preparePing().setTargetHostsFromString("lisuanlaoji.co").execute(new ParallecResponseHandler() {
+			pc.preparePing().setPingMode(PingMode.INET_ADDRESS_REACHABLE_NEED_ROOT).setTargetHostsFromString("lisuanlaoji.co www.baidu.com www.cctv.com wwww.bilibili.com www.youku.com").execute(new ParallecResponseHandler() {
 				
 				@Override
 				public void onCompleted(ResponseOnSingleTask res, Map<String, Object> responseContext) {
-					Global.getInstance().getLogger().info("ddv");
 					Global.getInstance().getLogger().info(res.getHost()+"-------->"+res.getOperationTimeMillis());
 				}
 			});
