@@ -26,3 +26,5 @@ public class NetReachable {
 			Global.getInstance().getLogger().error(e);
 			e.printStackTrace();
 		}
+	}
+}

@@ -1,4 +1,4 @@
-package tk.ddvudo.ssrdetection.Main;
+package tk.ddvudo.ssrdetection.main;
 
 import java.net.URLConnection;
 
