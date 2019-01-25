@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 
 import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
+import tk.ddvudo.ssrdetection.Utils.netHadler.NetReach.NetReachable;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
@@ -79,6 +80,7 @@ public class DataResolve {
 			servers.add(server);
 		}
 		airport.setServers(servers);
+		Global.getInstance().getLogger().info("一共获取到"+servers.size()+"个服务器");
 		return airport;
 	}
 
@@ -112,7 +114,7 @@ public class DataResolve {
 		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
-	public ArrayList<Result> serverPingTestMultiThread(Server... servers) throws Exception {
+	public ArrayList<Result> serverPingTestMultiThread(int timeout,Server... servers) throws Exception {
 		ArrayList<Result> res = null;
 		long t1 = System.currentTimeMillis();
 		ExecutorService pool = null;
@@ -137,7 +139,7 @@ public class DataResolve {
 					endindex = serverList.size();
 				}
 				List<Server> tmpList = serverList.subList(startindex, endindex);
-				Callable<ArrayList<Result>> call = new serverThread(tmpList);
+				Callable<ArrayList<Result>> call = new serverThread(tmpList, timeout);
 				list.add(pool.submit(call));
 			}
 			pool.shutdown();
@@ -167,7 +169,7 @@ public class DataResolve {
 			}
 		}
 		long t2 = System.currentTimeMillis();
-		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
+		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms,共"+res.size()+"个节点可用");
 		return res;
 	}
 	
@@ -176,6 +178,7 @@ public class DataResolve {
 		for(Server s:servers) {
 			serverhosts.add(s.getServer());
 		}
+		NetReachable.getInstance().starttest(serverhosts);
 	}
 	
 	public static final DataResolve getInstance() {
