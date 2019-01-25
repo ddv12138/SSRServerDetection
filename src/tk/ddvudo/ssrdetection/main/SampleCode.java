@@ -1,6 +1,7 @@
 package tk.ddvudo.ssrdetection.main;
 
 import java.net.URLConnection;
+
 import org.apache.commons.lang.StringUtils;
 import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
@@ -24,7 +25,7 @@ public class SampleCode {
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
 			Airport data = dr.Decode(iohandler.getResponseContent(con),LinkType.SSR);
-			dr.serverPingTestMultiThread(200,data.getServers());
+			dr.serverPingTestMultiThread(200, data.getServers());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

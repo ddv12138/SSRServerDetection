@@ -86,13 +86,13 @@ public class serverThread implements Callable<ArrayList<Result>> {
 					resarr.add(res);
 				}
 			} catch (ConnectException e) {
-				Global.getInstance().getLogger().info(s.getServer()+"--连接超时");
+				Global.getInstance().getLogger().error(s.getServer()+"--连接超时");
 				continue;
 			} catch (SocketTimeoutException e) {
-				Global.getInstance().getLogger().info(s.getServer()+"--读取超时");
+				Global.getInstance().getLogger().error(s.getServer()+"--读取超时");
 				continue;
 			} catch (UnknownHostException e) {
-				Global.getInstance().getLogger().info(s.getServer()+"--地址无法解析");
+				Global.getInstance().getLogger().error(s.getServer()+"--地址无法解析");
 				continue;
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
