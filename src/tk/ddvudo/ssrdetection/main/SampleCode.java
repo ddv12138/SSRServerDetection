@@ -11,7 +11,7 @@ import tk.ddvudo.ssrdetection.beans.Airport;
 import java.net.URLConnection;
 import java.util.Arrays;
 
-public class SampleCode {
+class SampleCode {
 
 	public static void main(String[] args) {
 		Global.getInstance().getLogger().info(Arrays.toString(args));

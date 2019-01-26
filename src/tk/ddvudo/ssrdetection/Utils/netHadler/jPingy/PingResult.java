@@ -99,7 +99,7 @@ public abstract class PingResult {
 
 	}
 
-	public List<String> getLines() {
+	List<String> getLines() {
 		return lines;
 	}
 

@@ -111,10 +111,10 @@ public class UnixPingResult extends PingResult {
 	@Override
 	public int matchTTL(List<String> lines) {
 		String str = lines.toString();
-		Pattern pattern = Pattern.compile("ttl=([0-9\\.]+)"); // match
+		Pattern pattern = Pattern.compile("ttl=([0-9.]+)"); // match
 		// ttl=decimal
 
-		Matcher matcher = pattern.matcher(str.toString());
+		Matcher matcher = pattern.matcher(str);
 
 		matcher.find();
 		MatchResult result = matcher.toMatchResult();
@@ -132,7 +132,7 @@ public class UnixPingResult extends PingResult {
 	@Override
 	public List<PingRequest> getRequests() {
 
-		List<PingRequest> requests = new ArrayList<PingRequest>();
+		List<PingRequest> requests = new ArrayList<>();
 		for (String line : getLines()) {
 			if (isPingRequest(line)) {
 				PingRequest request = createPingRequest(line);

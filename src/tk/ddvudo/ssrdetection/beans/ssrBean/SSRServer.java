@@ -3,11 +3,11 @@ package tk.ddvudo.ssrdetection.beans.ssrBean;
 import tk.ddvudo.ssrdetection.beans.Server;
 
 public class SSRServer extends Server{
-	String obfsparam = null;
-	String protoparam = null;
-	String group = null;
-	private String protocol  = null;
-	private String obfs  = null;
+	private String obfsparam;
+	private String protoparam;
+	private String group;
+	private String protocol;
+	private String obfs;
 	
 	@Override
 	public String toString() {

@@ -9,17 +9,14 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import io.parallec.core.ParallecResponseHandler;
 import io.parallec.core.ParallelClient;
-import io.parallec.core.ResponseOnSingleTask;
 import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.beans.Server;
 
 public class NetReachable {
-	final static NetReachable netreach = new NetReachable();
-	final static ParallelClient pc = new ParallelClient();
+	private final static NetReachable netreach = new NetReachable();
+	private final static ParallelClient pc = new ParallelClient();
 	public static NetReachable getInstance() {
 		return netreach;
 	}
@@ -33,18 +30,15 @@ public class NetReachable {
 		pc.preparePing().setConcurrency(100).setPingTimeoutMillis(100)
 		.setAutoSaveLogToLocal(true)
 		.setTargetHostsFromList(servers)
-		.execute(new ParallecResponseHandler() {
-			@Override
-			public void onCompleted(ResponseOnSingleTask res, Map<String, Object> responseContext) {
-				try {
-					Global.getInstance().getLogger().info(res.getHost()+"["+res.getStatusCode()+"]" +"<--->"+res.getOperationTimeMillis());
-					if(res.getStatusCode().equals("LIVE")) {
-						useable.put("useable", useable.get("useable")+1);
-					}
-				} catch (Exception e) {
-					Global.getInstance().getLogger().error(e);
-					e.printStackTrace();
+		.execute((res, responseContext) -> {
+			try {
+				Global.getInstance().getLogger().info(res.getHost()+"["+res.getStatusCode()+"]" +"<--->"+res.getOperationTimeMillis());
+				if(res.getStatusCode().equals("LIVE")) {
+					useable.put("useable", useable.get("useable")+1);
 				}
+			} catch (Exception e) {
+				Global.getInstance().getLogger().error(e);
+				e.printStackTrace();
 			}
 		});
 		pc.releaseExternalResources();
@@ -58,27 +52,21 @@ public class NetReachable {
 		}
 		int useable = 0;
 		for(Server s:servers) {
-			Socket socket = new Socket();
-			try {
+			try (Socket socket = new Socket();) {
 				long t3 = System.currentTimeMillis();
 				socket.connect(new InetSocketAddress(s.getServer(), Integer.parseInt(s.getPort())), timeout);
 				long t4 = System.currentTimeMillis();
 				socket.setSoTimeout(timeout);
-				if(socket.isConnected()) {
+				if (socket.isConnected()) {
 					useable++;
-					Global.getInstance().getLogger().info(s.getServer()+"--->"+"连接成功,延迟"+(t4-t3)+"ms");
+					Global.getInstance().getLogger().info(s.getServer() + "--->" + "连接成功,延迟" + (t4 - t3) + "ms");
 				}
-			}catch (ConnectException e) {
+			} catch (ConnectException e) {
 //				Global.getInstance().getLogger().info(s.getServer()+"--连接超时");
-				continue;
-			}catch (SocketTimeoutException e) {
+			} catch (SocketTimeoutException e) {
 //				Global.getInstance().getLogger().info(s.getServer()+"--读取超时");
-				continue;
-			}catch (UnknownHostException e) {
+			} catch (UnknownHostException e) {
 //				Global.getInstance().getLogger().info(s.getServer()+"--地址无法解析");
-				continue;
-			}finally {
-				socket.close();
 			}
 		}
 		

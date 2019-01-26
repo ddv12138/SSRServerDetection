@@ -16,10 +16,10 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 import tk.ddvudo.ssrdetection.beans.Result;
 import tk.ddvudo.ssrdetection.beans.Server;
 
-public class serverThread implements Callable<ArrayList<Result>> {
+class serverThread implements Callable<ArrayList<Result>> {
 
-	private List<Server> servers = null;
-	private int timeout;
+	private final List<Server> servers;
+	private final int timeout;
 
 	public serverThread(List<Server> tmpList, int timeout) {
 		this.servers = tmpList;
@@ -87,16 +87,11 @@ public class serverThread implements Callable<ArrayList<Result>> {
 				}
 			} catch (ConnectException e) {
 				Global.getInstance().getLogger().error(s.getServer()+"--连接超时");
-				continue;
 			} catch (SocketTimeoutException e) {
 				Global.getInstance().getLogger().error(s.getServer()+"--读取超时");
-				continue;
 			} catch (UnknownHostException e) {
 				Global.getInstance().getLogger().error(s.getServer()+"--地址无法解析");
-				continue;
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (NumberFormatException | IOException e) {
 				e.printStackTrace();
 			} finally {
 				try {

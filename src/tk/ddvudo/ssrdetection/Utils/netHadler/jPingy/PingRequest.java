@@ -50,8 +50,8 @@ public class PingRequest {
 		return time;
 	}
 
-	protected PingRequest(long bytes, String from, String fromIP, int reqnr,
-			int ttl, float time) {
+	private PingRequest(long bytes, String from, String fromIP, int reqnr,
+						int ttl, float time) {
 		super();
 		this.bytes = bytes;
 		this.from = from;
@@ -73,7 +73,7 @@ public class PingRequest {
 		private int ttl;
 		private float time;
 
-		public PingRequestBuilder() {
+		PingRequestBuilder() {
 
 		}
 

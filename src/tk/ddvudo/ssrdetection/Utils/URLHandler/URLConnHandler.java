@@ -7,7 +7,7 @@ import java.net.URLConnection;
 import tk.ddvudo.ssrdetection.Utils.Global;
 
 public class URLConnHandler {
-	String url = null;
+	private String url = null;
 
 	private URLConnHandler(String url) {
 		this.url = url;
@@ -30,7 +30,7 @@ public class URLConnHandler {
 		return con;
 	}
 
-	public static final URLConnHandler getInstance(String url) {
+	public static URLConnHandler getInstance(String url) {
 		return new URLConnHandler(url);
 	}
 }

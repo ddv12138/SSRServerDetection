@@ -70,15 +70,15 @@ public class WinPingResult extends PingResult {
 			String[] rtt_equals = rtts.trim().split("=");
 			ArrayList<String> win_rtt = new ArrayList<>();
 			for (String s : rtt_equals) {
-				if (s.indexOf("ms") > -1) {
-					if (s.indexOf("，") > -1) {
+				if (s.contains("ms")) {
+					if (s.contains("，")) {
 						win_rtt.add(s.split("，")[0].replaceAll("ms", ""));
 					} else {
 						win_rtt.add(s.replaceAll("ms", ""));
 					}
 				}
 			}
-			rtt = win_rtt.toArray(new String[win_rtt.size()]);
+			rtt = win_rtt.toArray(new String[0]);
 		}
 	}
 
@@ -124,10 +124,10 @@ public class WinPingResult extends PingResult {
 	@Override
 	public int matchTTL(List<String> lines) {
 		String str = lines.toString();
-		Pattern pattern = Pattern.compile("TTL=([0-9\\.]+)"); // match
+		Pattern pattern = Pattern.compile("TTL=([0-9.]+)"); // match
 		// ttl=decimal
 
-		Matcher matcher = pattern.matcher(str.toString());
+		Matcher matcher = pattern.matcher(str);
 
 		matcher.find();
 		MatchResult result = matcher.toMatchResult();
@@ -143,7 +143,7 @@ public class WinPingResult extends PingResult {
 	@Override
 	public List<PingRequest> getRequests() {
 
-		List<PingRequest> requests = new ArrayList<PingRequest>();
+		List<PingRequest> requests = new ArrayList<>();
 		for (String line : getLines()) {
 			if (isPingRequest(line)) {
 				PingRequest request = createPingRequest(line);

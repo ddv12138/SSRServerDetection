@@ -12,27 +12,27 @@ package tk.ddvudo.ssrdetection.Utils.netHadler.jPingy;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
 
 public class PingArguments {
-	public static final int DEFAULT_COUNT = 4;
+	private static final int DEFAULT_COUNT = 4;
 
-	String url;
-	int count = DEFAULT_COUNT;
-	long timeout;
-	int payload_bytes;
-	long interval;
-	int ttl;
+	private String url;
+	private int count = DEFAULT_COUNT;
+	private long timeout;
+	private int payload_bytes;
+	private long interval;
+	private int ttl;
 
-	boolean timeout_enabled = false;
-	boolean payload_bytes_enabled = false;
-	boolean interval_enabled = false;
-	boolean ttl_enabled = false;
+	private boolean timeout_enabled = false;
+	private boolean payload_bytes_enabled = false;
+	private boolean interval_enabled = false;
+	private boolean ttl_enabled = false;
 
-	public PingArguments() {
+	private PingArguments() {
 
 	}
 
 	public static class Builder {
 
-		private PingArguments arguments;
+		private final PingArguments arguments;
 
 		public Builder() {
 			this.arguments = new PingArguments();

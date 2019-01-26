@@ -1,6 +1,5 @@
 package tk.ddvudo.ssrdetection.Utils.dataResolve;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,11 +33,11 @@ import tk.ddvudo.ssrdetection.beans.Server;
 public class DataResolve {
 	private DataResolve() {}
 
-	public Airport Decode(String str,LinkType linktype) throws UnsupportedEncodingException {
+	public Airport Decode(String str,LinkType linktype) {
 		Airport airport = null;
 		String decoded = linkBase64Decode(str);
 		if(linktype == LinkType.SS) {
-			airport = (SSAirport) JSON.parseObject(decoded, SSAirport.class);
+			airport = JSON.parseObject(decoded, SSAirport.class);
 		}else if(linktype == LinkType.SSR) {
 			airport = this.parseSSRAirport(decoded);
 		}
@@ -52,13 +51,13 @@ public class DataResolve {
 		for(String link : links) {
 			if(StringUtils.isEmpty(link))continue;
 			String decode1 = linkBase64Decode(link.trim());
-			String basic = decode1.split("\\/\\?")[0];
+			String basic = decode1.split("/\\?")[0];
 			String obfsparam = null;
 			String protoparam = null;
 			String remarks = null;
 			String group = "";
-			if(decode1.split("\\/\\?").length>1) {
-				String params = decode1.split("\\/\\?")[1];
+			if(decode1.split("/\\?").length>1) {
+				String params = decode1.split("/\\?")[1];
 				String[] paramsinfo = params.split("&");
 				if(paramsinfo.length != 4)continue;
 				if(paramsinfo[0].split("=").length > 1)obfsparam = linkBase64Decode(paramsinfo[0].split("=")[1]);
@@ -84,8 +83,8 @@ public class DataResolve {
 		return airport;
 	}
 
-	public String linkBase64Decode(String str) {
-		return new String(Base64.decodeBase64(str.replaceAll("-", "+").replaceAll("_", "/").replaceAll("\r|\n|\t", "")));
+	private String linkBase64Decode(String str) {
+		return new String(Base64.decodeBase64(str.replaceAll("-", "+").replaceAll("_", "/").replaceAll("[\r\n\t]", "")));
 	}
 	
 	public String unicodeToString(String str) {
@@ -115,12 +114,11 @@ public class DataResolve {
 	}
 	
 	public ArrayList<Result> serverPingTestMultiThread(int timeout,Server... servers) throws Exception {
-		ArrayList<Result> res = null;
+		ArrayList<Result> res;
 		long t1 = System.currentTimeMillis();
 		ExecutorService pool = null;
 		try {
-			List<Server> serverList = new ArrayList<>();
-			serverList.addAll(Arrays.asList(servers));
+			List<Server> serverList = new ArrayList<>(Arrays.asList(servers));
 			int userlength = serverList.size();
 			int corenum = Runtime.getRuntime().availableProcessors();
 			int dataPreThread = (int) Math.round(Math.ceil(serverList.size() / (double) (corenum)));
@@ -130,7 +128,7 @@ public class DataResolve {
 			
 			pool = Executors.newFixedThreadPool(groupnum);
 			
-			ArrayList<Future<ArrayList<Result>>> list = new ArrayList<Future<ArrayList<Result>>>();
+			ArrayList<Future<ArrayList<Result>>> list = new ArrayList<>();
 			
 			for (int i = 0; i < groupnum; i++) {
 				int startindex = i * dataPreThread;
@@ -160,12 +158,9 @@ public class DataResolve {
 			for(Result r : res) {
 				Global.getInstance().getLogger().info(r.toString());
 			}
-		} catch (Exception e) {
-			throw e;
 		} finally {
 			if (pool != null) {
 				pool.shutdown();
-				pool = null;
 			}
 		}
 		long t2 = System.currentTimeMillis();
@@ -173,7 +168,7 @@ public class DataResolve {
 		return res;
 	}
 	
-	public void serverPingTestWithParallec(Server... servers) throws Exception {
+	public void serverPingTestWithParallec(Server... servers) {
 		ArrayList<String> serverhosts = new ArrayList<>();
 		for(Server s:servers) {
 			serverhosts.add(s.getServer());
@@ -181,7 +176,7 @@ public class DataResolve {
 		NetReachable.getInstance().starttest(serverhosts);
 	}
 	
-	public static final DataResolve getInstance() {
+	public static DataResolve getInstance() {
 		return new DataResolve();
 	}
 }

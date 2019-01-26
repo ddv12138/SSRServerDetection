@@ -41,7 +41,7 @@ public class Ping {
 
 		};
 
-		public abstract PingResult getResult(List<String> output);
+		protected abstract PingResult getResult(List<String> output);
 	}
 
 	public static PingResult ping(PingArguments ping, Backend backend) {
@@ -61,7 +61,7 @@ public class Ping {
 
 			String s;
 
-			List<String> lines = new ArrayList<String>();
+			List<String> lines = new ArrayList<>();
 			while ((s = stdInput.readLine()) != null) {
 				lines.add(s);
 				// System.err.println(s);

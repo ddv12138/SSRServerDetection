@@ -19,7 +19,7 @@ public class SSRAirport extends Airport {
 	}
 
 	public SSRServer[] getServers() {
-		return this.servers.toArray(new SSRServer[this.servers.size()]);
+		return this.servers.toArray(new SSRServer[0]);
 	}
 
 	public void setServers(List<SSRServer> servers) {

@@ -6,15 +6,15 @@ import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.beans.Airport;
 
 public class SSAirport extends Airport{
-	String group = "";
-	String method = "";
-	String expiry = "";
-	String password = "";
-	String port = "";
-	String traffic_total = "";
-	String traffic_used = "";
-	String url = "";
-	List<SSServer> servers = null;
+	private String group;
+	private String method;
+	private String expiry;
+	private String password;
+	private String port;
+	private String traffic_total;
+	private String traffic_used;
+	private String url;
+	private List<SSServer> servers;
 	public SSAirport(String airport, String encryption, String expiry, String password, String port,
 			String traffic_total, String traffic_used, String url, List<SSServer> servers) {
 		super();
@@ -78,7 +78,7 @@ public class SSAirport extends Airport{
 		this.url = url;
 	}
 	public SSServer[] getServers() {
-		return this.servers.toArray(new SSServer[this.servers.size()]);
+		return this.servers.toArray(new SSServer[0]);
 	}
 	public void setServers(List<SSServer> servers) {
 		this.servers = servers;

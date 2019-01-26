@@ -3,8 +3,8 @@ package tk.ddvudo.ssrdetection.beans.ssBean;
 import tk.ddvudo.ssrdetection.beans.Server;
 
 public class SSServer extends Server{
-	String id = "";
-	String ratio = "";
+	private String id;
+	private String ratio;
 	public SSServer(String id, String ratio, String remarks, String server) {
 		super();
 		this.id = id;

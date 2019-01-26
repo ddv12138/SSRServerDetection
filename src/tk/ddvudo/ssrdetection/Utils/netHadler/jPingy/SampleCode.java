@@ -20,7 +20,7 @@ import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping.Backend;
  * @version 0.1a
  * 
  */
-public class SampleCode {
+class SampleCode {
 
 	/**
 	 * @param args
