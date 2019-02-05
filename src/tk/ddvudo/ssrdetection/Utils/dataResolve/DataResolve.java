@@ -168,13 +168,13 @@ public class DataResolve {
 		return res;
 	}
 	
-	public void serverPingTestWithParallec(Server... servers) {
-		ArrayList<String> serverhosts = new ArrayList<>();
-		for(Server s:servers) {
-			serverhosts.add(s.getServer());
-		}
-		NetReachable.getInstance().starttest(serverhosts);
-	}
+//	public void serverPingTestWithParallec(Server... servers) {
+//		ArrayList<String> serverhosts = new ArrayList<>();
+//		for(Server s:servers) {
+//			serverhosts.add(s.getServer());
+//		}
+//		NetReachable.getInstance().starttest(serverhosts);
+//	}
 	
 	public static DataResolve getInstance() {
 		return new DataResolve();
