@@ -6,7 +6,9 @@
 
 # Log file
 *.log
-
+/log
+/bin
+.project
 # BlueJ files
 *.ctxt
 

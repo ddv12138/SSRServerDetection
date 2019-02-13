@@ -1,6 +1,7 @@
 package tk.ddvudo.ssrdetection.main;
 
 import org.apache.commons.lang.StringUtils;
+
 import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLConnHandler;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler;
@@ -9,17 +10,13 @@ import tk.ddvudo.ssrdetection.Utils.dataResolve.DataResolve;
 import tk.ddvudo.ssrdetection.beans.Airport;
 
 import java.net.URLConnection;
-import java.util.Arrays;
 
 class SampleCode {
 
 	public static void main(String[] args) {
-		Global.getInstance().getLogger().info(Arrays.toString(args));
-		URLIOHandler iohandler;
-		DataResolve dr;
 		try {
-			dr = DataResolve.getInstance();
-			iohandler = URLIOHandler.getInstance();
+			DataResolve dr = DataResolve.getInstance();
+			URLIOHandler iohandler = URLIOHandler.getInstance();
 			String linkurl = iohandler.getInputUrl(LinkType.SSR);
 			if(StringUtils.isEmpty(linkurl)) {
 				Global.getInstance().getLogger().debug("链接为空，退出");
@@ -27,7 +24,7 @@ class SampleCode {
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
 			Airport data = dr.Decode(iohandler.getResponseContent(con),LinkType.SSR);
-			dr.serverPingTestMultiThread(200, data.getServers());
+			dr.serverPingTestMultiThread(1000, data.getServers());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

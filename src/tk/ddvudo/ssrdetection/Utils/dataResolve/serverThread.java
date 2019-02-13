@@ -34,8 +34,8 @@ class serverThread implements Callable<ArrayList<Result>> {
 			try {
 				long t3 = System.currentTimeMillis();
 				socket.connect(new InetSocketAddress(s.getServer(), Integer.parseInt(s.getPort())), timeout);
-				long t4 = System.currentTimeMillis();
 				socket.setSoTimeout(timeout);
+				long t4 = System.currentTimeMillis();
 				if (socket.isConnected()) {
 					Result res = new Result(new PingResult(null) {
 						@Override
