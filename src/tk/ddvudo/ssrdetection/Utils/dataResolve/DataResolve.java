@@ -17,7 +17,6 @@ import com.alibaba.fastjson.JSON;
 
 import tk.ddvudo.ssrdetection.Utils.Global;
 import tk.ddvudo.ssrdetection.Utils.URLHandler.URLIOHandler.LinkType;
-import tk.ddvudo.ssrdetection.Utils.netHadler.NetReach.NetReachable;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.Ping;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingArguments;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
