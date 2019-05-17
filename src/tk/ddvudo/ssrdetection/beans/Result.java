@@ -16,9 +16,16 @@ public class Result {
 	public Server getServer() {
 		return server;
 	}
+
 	@Override
 	public String toString() {
-		return "测试结果: [节点名称<" + server.getRemarks() + ">, 平均延迟=" + result.rtt_avg() + "ms]";
+		final StringBuilder sb = new StringBuilder("{");
+		sb.append("\"result\":")
+				.append(result);
+		sb.append(",\"server\":")
+				.append(server);
+		sb.append('}');
+		return sb.toString();
 	}
-	
+
 }

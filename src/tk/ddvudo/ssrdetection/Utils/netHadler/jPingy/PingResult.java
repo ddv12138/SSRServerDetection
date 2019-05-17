@@ -127,10 +127,30 @@ public abstract class PingResult {
 
 	@Override
 	public String toString() {
-		return "PingResult [address=" + address + ", transmitted="
-				+ transmitted + ", ttl=" + ttl + ", time=" + time
-				+ ", received=" + received + ", payload=" + payload
-				+ ", rtt_min=" + rtt_min + ", rtt_avg=" + rtt_avg
-				+ ", rtt_max=" + rtt_max + ", rtt_mdev=" + rtt_mdev + "]";
+		final StringBuilder sb = new StringBuilder("{");
+		sb.append("\"lines\":")
+				.append(lines);
+		sb.append(",\"address\":\"")
+				.append(address).append('\"');
+		sb.append(",\"transmitted\":")
+				.append(transmitted);
+		sb.append(",\"ttl\":")
+				.append(ttl);
+		sb.append(",\"time\":")
+				.append(time);
+		sb.append(",\"received\":")
+				.append(received);
+		sb.append(",\"payload\":")
+				.append(payload);
+		sb.append(",\"rtt_min\":")
+				.append(rtt_min);
+		sb.append(",\"rtt_avg\":")
+				.append(rtt_avg);
+		sb.append(",\"rtt_max\":")
+				.append(rtt_max);
+		sb.append(",\"rtt_mdev\":")
+				.append(rtt_mdev);
+		sb.append('}');
+		return sb.toString();
 	}
 }
