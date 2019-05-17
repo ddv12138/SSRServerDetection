@@ -16,7 +16,7 @@ class SampleCode {
 	public static void main(String[] args) {
 		try {
 			DataResolve dr = DataResolve.getInstance();
-			URLIOHandler iohandler = URLIOHandler.getInstance();
+			URLIOHandler iohandler = URLIOHandler.getInstance(LinkType.SSR);
 			String linkurl = iohandler.getInputUrl(LinkType.SSR);
 			if(StringUtils.isEmpty(linkurl)) {
 				Global.getInstance().getLogger().debug("链接为空，退出");
