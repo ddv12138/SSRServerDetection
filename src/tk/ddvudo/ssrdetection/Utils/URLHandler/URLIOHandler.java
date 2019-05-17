@@ -28,10 +28,11 @@ public class URLIOHandler {
 
 	private LinkType linktype;
 	
-	private URLIOHandler() {
+	private URLIOHandler(LinkType linktype) {
+		this.linktype = linktype;
 	}
-	public static URLIOHandler getInstance() {
-		return new URLIOHandler();
+	public static URLIOHandler getInstance(LinkType linktype) {
+		return new URLIOHandler(linktype);
 	}
 
 	public String getInputUrl(LinkType linktype) throws IOException {
