@@ -21,18 +21,18 @@ import tk.ddvudo.ssrdetection.Utils.Global;
  */
 public abstract class PingResult {
 
-	private List<String> lines;
+	protected List<String> lines;
 
-	private String address;
-	private int transmitted = -1;
-	private int ttl = -1;
-	private long time = -1;
-	private int received = -1;
-	private int payload = -1;
-	private float rtt_min = -1;
-	private float rtt_avg = -1;
-	private float rtt_max = -1;
-	private float rtt_mdev = -1;
+	protected String address;
+	protected int transmitted = -1;
+	protected int ttl = -1;
+	protected long time = -1;
+	protected int received = -1;
+	protected int payload = -1;
+	protected float rtt_min = -1;
+	protected float rtt_avg = -1;
+	protected float rtt_max = -1;
+	protected float rtt_mdev = -1;
 
 	public String address() {
 		return address;
@@ -93,7 +93,6 @@ public abstract class PingResult {
 
 			payload = parsePayload(pingOutput);
 		} catch (Exception e) {
-//			e.printStackTrace();
 			Global.getInstance().getLogger().error(pingOutput.toString()+"---》连接失败");
 		}
 
@@ -125,32 +124,4 @@ public abstract class PingResult {
 
 	public abstract List<PingRequest> getRequests();
 
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("{");
-		sb.append("\"lines\":")
-				.append(lines);
-		sb.append(",\"address\":\"")
-				.append(address).append('\"');
-		sb.append(",\"transmitted\":")
-				.append(transmitted);
-		sb.append(",\"ttl\":")
-				.append(ttl);
-		sb.append(",\"time\":")
-				.append(time);
-		sb.append(",\"received\":")
-				.append(received);
-		sb.append(",\"payload\":")
-				.append(payload);
-		sb.append(",\"rtt_min\":")
-				.append(rtt_min);
-		sb.append(",\"rtt_avg\":")
-				.append(rtt_avg);
-		sb.append(",\"rtt_max\":")
-				.append(rtt_max);
-		sb.append(",\"rtt_mdev\":")
-				.append(rtt_mdev);
-		sb.append('}');
-		return sb.toString();
-	}
 }

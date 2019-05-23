@@ -60,11 +60,11 @@ public class NetReachable {
 					Global.getInstance().getLogger().info(s.getServer() + "--->" + "连接成功,延迟" + (t4 - t3) + "ms");
 				}
 			} catch (ConnectException e) {
-//				Global.getInstance().getLogger().info(s.getServer()+"--连接超时");
+				Global.getInstance().getLogger().info(s.getServer()+"--连接超时");
 			} catch (SocketTimeoutException e) {
-//				Global.getInstance().getLogger().info(s.getServer()+"--读取超时");
+				Global.getInstance().getLogger().info(s.getServer()+"--读取超时");
 			} catch (UnknownHostException e) {
-//				Global.getInstance().getLogger().info(s.getServer()+"--地址无法解析");
+				Global.getInstance().getLogger().info(s.getServer()+"--地址无法解析");
 			}
 		}
 		

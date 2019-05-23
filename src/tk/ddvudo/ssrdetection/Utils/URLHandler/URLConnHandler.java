@@ -18,8 +18,6 @@ public class URLConnHandler {
 
 	public URLConnection getConnection() throws IOException {
 		URL url = new URL(this.url);
-//		SocketAddress addr = new InetSocketAddress("127.0.0.1", 1080);
-//		Proxy proxy = new Proxy(Proxy.Type.HTTP, addr);
 		URLConnection con = url.openConnection();
 		con.setRequestProperty("accept", "*/*");
 		con.setRequestProperty("connection", "Keep-Alive");

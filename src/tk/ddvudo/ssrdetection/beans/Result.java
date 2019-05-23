@@ -6,7 +6,6 @@ public class Result {
 	private final PingResult result;
 	private final Server server;
 	public Result(PingResult result, Server s) {
-		super();
 		this.result = result;
 		this.server = s;
 	}
@@ -27,5 +26,4 @@ public class Result {
 		sb.append('}');
 		return sb.toString();
 	}
-
 }

@@ -154,9 +154,6 @@ public class DataResolve {
 				Global.getInstance().getLogger().error("没有结果");
 				return null;
 			}
-			for(Result r : res) {
-				Global.getInstance().getLogger().info(r.toString());
-			}
 		} finally {
 			if (pool != null) {
 				pool.shutdown();
