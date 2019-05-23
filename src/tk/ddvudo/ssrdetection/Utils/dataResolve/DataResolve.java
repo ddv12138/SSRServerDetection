@@ -104,15 +104,15 @@ public class DataResolve {
 		for(SSServer s : servers) {
 			PingArguments arguments = new PingArguments.Builder().url(s.getServer()).timeout(500).count(2).bytes(32).build();
 			PingResult results = Ping.ping(arguments, Backend.WINDOWS_zhCN);
-			if(results.rtt_avg()>0) {
-				Global.getInstance().getLogger().info(s.getRemarks()+"测试结果"+results.rtt_avg()+"ms");
+			if(results.getRtt_avg()>0) {
+				Global.getInstance().getLogger().info(s.getRemarks()+"测试结果"+results.getRtt_avg()+"ms");
 			}
 		}
 		long t2 = System.currentTimeMillis();
 		Global.getInstance().getLogger().info("测试结束,耗时"+(t2-t1)+"ms");
 	}
 	
-	public ArrayList<Result> serverPingTestMultiThread(int timeout,Server... servers) throws Exception {
+	public List<Result> serverPingTestMultiThread(int timeout,Server... servers) throws Exception {
 		ArrayList<Result> res;
 		long t1 = System.currentTimeMillis();
 		ExecutorService pool = null;

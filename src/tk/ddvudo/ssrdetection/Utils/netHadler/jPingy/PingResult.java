@@ -14,10 +14,10 @@ import java.util.List;
 import tk.ddvudo.ssrdetection.Utils.Global;
 
 /**
- * 
+ *
  * @author Thomas Goossens
  * @version 0.1a
- * 
+ *
  */
 public abstract class PingResult {
 
@@ -34,43 +34,43 @@ public abstract class PingResult {
 	protected float rtt_max = -1;
 	protected float rtt_mdev = -1;
 
-	public String address() {
+	public String getAddress() {
 		return address;
 	}
 
-	public int transmitted() {
+	public int getTransmitted() {
 		return transmitted;
 	}
 
-	public int ttl() {
+	public int getTtl() {
 		return ttl;
 	}
 
-	public long time() {
+	public long getTime() {
 		return time;
 	}
 
-	public int received() {
+	public int getReceived() {
 		return received;
 	}
 
-	public int payload() {
+	public int getPayload() {
 		return payload;
 	}
 
-	public float rtt_min() {
+	public float getRtt_min() {
 		return rtt_min;
 	}
 
-	public float rtt_avg() {
+	public float getRtt_avg() {
 		return rtt_avg;
 	}
 
-	public float rtt_max() {
+	public float getRtt_max() {
 		return rtt_max;
 	}
 
-	public float rtt_mdev() {
+	public float getRtt_mdev() {
 		return rtt_mdev;
 	}
 
@@ -124,4 +124,32 @@ public abstract class PingResult {
 
 	public abstract List<PingRequest> getRequests();
 
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("{");
+		sb.append("\"lines\":")
+				.append(lines);
+		sb.append(",\"address\":\"")
+				.append(address).append('\"');
+		sb.append(",\"transmitted\":")
+				.append(transmitted);
+		sb.append(",\"ttl\":")
+				.append(ttl);
+		sb.append(",\"time\":")
+				.append(time);
+		sb.append(",\"received\":")
+				.append(received);
+		sb.append(",\"payload\":")
+				.append(payload);
+		sb.append(",\"rtt_min\":")
+				.append(rtt_min);
+		sb.append(",\"rtt_avg\":")
+				.append(rtt_avg);
+		sb.append(",\"rtt_max\":")
+				.append(rtt_max);
+		sb.append(",\"rtt_mdev\":")
+				.append(rtt_mdev);
+		sb.append('}');
+		return sb.toString();
+	}
 }

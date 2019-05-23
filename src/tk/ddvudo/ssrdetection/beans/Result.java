@@ -3,14 +3,14 @@ package tk.ddvudo.ssrdetection.beans;
 import tk.ddvudo.ssrdetection.Utils.netHadler.jPingy.PingResult;
 
 public class Result {
-	private final PingResult result;
-	private final Server server;
+	private PingResult pingResult;
+	private Server server;
 	public Result(PingResult result, Server s) {
-		this.result = result;
+		this.pingResult = result;
 		this.server = s;
 	}
 	public PingResult getResult() {
-		return result;
+		return pingResult;
 	}
 	public Server getServer() {
 		return server;
@@ -19,8 +19,8 @@ public class Result {
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("{");
-		sb.append("\"result\":")
-				.append(result);
+		sb.append("\"pingResult\":")
+				.append(pingResult);
 		sb.append(",\"server\":")
 				.append(server);
 		sb.append('}');

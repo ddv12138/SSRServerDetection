@@ -36,11 +36,11 @@ class SampleCode {
 		Global.getInstance().getLogger().info(locale.getLanguage());  
 		Global.getInstance().getLogger().info(locale.getCountry());
 	
-		Global.getInstance().getLogger().info("TTL: " + results.ttl());
+		Global.getInstance().getLogger().info("TTL: " + results.getTtl());
 
-		Global.getInstance().getLogger().info("RTT Minimum: " + results.rtt_min());
+		Global.getInstance().getLogger().info("RTT Minimum: " + results.getRtt_min());
 
-		Global.getInstance().getLogger().info("Received : " + results.received());
+		Global.getInstance().getLogger().info("Received : " + results.getReceived());
 		
 		Global.getInstance().getLogger().info(results.getRequests());
 	}

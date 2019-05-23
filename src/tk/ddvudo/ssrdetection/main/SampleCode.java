@@ -1,6 +1,10 @@
 package tk.ddvudo.ssrdetection.main;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.commons.lang.StringUtils;
 
 import tk.ddvudo.ssrdetection.Utils.Global;
@@ -13,6 +17,7 @@ import tk.ddvudo.ssrdetection.beans.Result;
 
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 class SampleCode {
 
@@ -27,8 +32,8 @@ class SampleCode {
 			}
 			URLConnection con = URLConnHandler.getInstance(linkurl).getConnection();
 			Airport data = dr.Decode(iohandler.getResponseContent(con),LinkType.SSR);
-			ArrayList<Result> res = dr.serverPingTestMultiThread(1000, data.getServers());
-			System.out.println(JSON.toJSONString(res));
+			List<Result> res = dr.serverPingTestMultiThread(1000, data.getServers());
+			Global.getInstance().getLogger().info(JSON.toJSONString(res));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
